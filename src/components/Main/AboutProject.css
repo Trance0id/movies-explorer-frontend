@@ -1,0 +1,41 @@
+.about-project {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 110px 70px;
+}
+
+.section-heading {
+  margin: 0;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #000;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.23;
+  letter-spacing: -0.04em;
+}
+
+.about-project__details {
+  list-style: none;
+  margin: 0;
+  padding: 70px 0 110px;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.about-project__detail-heading {
+  margin: 0 0 26px 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.about-project__detail-text {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.about-project__progress-bar {
+}
