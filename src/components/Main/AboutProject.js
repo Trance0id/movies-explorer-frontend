@@ -27,7 +27,18 @@ export default function AboutProject() {
         </li>
       </ul>
       <div className='about-project__progress-bar'>
-
+        <p className='about-project__progress-bar-first-line about-project__progress-bar-first-cell'>
+          1 неделя
+        </p>
+        <p className='about-project__progress-bar-first-line'>
+          4 недели
+        </p>
+        <p className='about-project__progress-bar-second-line'>
+          Back&ndash;end
+        </p>
+        <p className='about-project__progress-bar-second-line'>
+          Front&ndash;end
+        </p>
       </div>
     </section>
   );

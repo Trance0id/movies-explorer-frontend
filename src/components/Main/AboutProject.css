@@ -38,4 +38,37 @@
 }
 
 .about-project__progress-bar {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: auto auto;
+  align-items: center;
+  justify-items: center;
+  row-gap: 14px;
+}
+
+.about-project__progress-bar-first-line {
+  align-self: stretch;
+  padding: 9px 0;
+  justify-self: stretch;
+  text-align: center;
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  background-color: #f2f2f2;
+}
+
+.about-project__progress-bar-second-line {
+  margin: 0;
+  background-color: transparent;
+  color: #a0a0a0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
+}
+
+.about-project__progress-bar-first-cell {
+  background-color: #000;
+  color: #fff;
 }

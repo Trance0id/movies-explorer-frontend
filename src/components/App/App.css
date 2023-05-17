@@ -12,3 +12,12 @@
   font-family: Inter, Arial, sans-serif;
   text-rendering: optimizeLegibility;
 }
+
+.page__heading {
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.16;
+  letter-spacing: -0.04em;
+}
