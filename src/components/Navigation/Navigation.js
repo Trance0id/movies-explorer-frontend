@@ -1,17 +1,17 @@
 import './Navigation.css';
+import { Link } from 'react-router-dom';
 
 
-export default function Header() {
+export default function Navigation() {
     return (
-        <ul className="navigation">
-          <li>
-            {/* <NavButton /> */}
-            Фильмы
-          </li>
-          <li>
-            Сохраненные фильмы
-          </li>
+      <nav className="navigation">
+        <Link className='navigation__link'>
+          Регистрация
+        </Link>
 
-        </ul>
-    )
+        <Link className='navigation__link navigation__link_login'>
+          Войти
+        </Link>
+      </nav>
+    );
 }

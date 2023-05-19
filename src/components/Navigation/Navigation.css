@@ -1,8 +1,26 @@
 .navigation {
   margin: 0;
   padding: 0;
-  width: calc(100% - 38px - 44px - 140px);
   list-style: none;
   display: flex;
-  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navigation__link {
+  margin-left: 30px;
+  padding: 8px 20px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+}
+
+.navigation__link_login {
+  background-color: #000;
+  color: #fff;
 }

@@ -1,7 +1,7 @@
 .portfolio {
   box-sizing: border-box;
-  width: 100%;
-  padding: 0 70px;
+  width: calc(100% - 2 * 70px);
+  padding-bottom: 125px;
 }
 
 .portfolio__heading {
@@ -21,7 +21,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* padding: 19px 0; */
   border-bottom: 1px solid #e8e8e8;
 }
 

@@ -3,20 +3,19 @@ import React from 'react';
 import { Route, Routes, useNavigate} from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
-
+import Footer from '../Footer/Footer';
 
 function App() {
   return (
     <div className="page">
       <Header />
-      <Main />
-      {/* <Navigation />
+      {/* <Navigation /> */}
       <Routes>
           <Route
-            path="*"
+            path="/"
             element={<Main/>}
           />
-          <Route
+          {/* <Route
             path="/sign-up"
             element={
               <Register />
@@ -27,9 +26,9 @@ function App() {
             element={
               <Login/>
             }
-          />
+          /> */}
         </Routes>
-        <Footer /> */}
+        <Footer />
     </div>
   );
 }

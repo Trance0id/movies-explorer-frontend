@@ -1,0 +1,47 @@
+.footer {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 80px 70px 0;
+}
+
+.footer__text {
+  margin: 0;
+  padding-bottom: 20px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.23;
+  color: #a0a0a0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.footer__credits {
+  margin: 0;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__year {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.23;
+  color: #000;
+}
+
+.footer__contacts {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style-type: none;
+}
+
+.footer__link {
+  text-decoration: none;
+  font-style: normal;
+  margin-left: 20px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.23;
+  color: #000;
+}
