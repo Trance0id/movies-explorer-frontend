@@ -15,10 +15,10 @@ export default function Footer() {
           <address>
             <ul className='footer__contacts'>
               <li>
-                <Link to='' className='footer__link'>Яндекс.Практикум</Link>
+                <Link to='' className='link footer__link'>Яндекс.Практикум</Link>
               </li>
               <li>
-                <Link to='' className='footer__link'>Github</Link>
+                <Link to='' className='link footer__link'>Github</Link>
               </li>
             </ul>
           </address>

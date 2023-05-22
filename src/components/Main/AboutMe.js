@@ -24,7 +24,7 @@ export default function AboutMe() {
               Хочу попробовать сменить род деятельности на разработку.
             </p>
           </section>
-          <Link to='https://github.com/Trance0id' className='person-info__link' target='blank'>
+          <Link to='https://github.com/Trance0id' className='link person-info__link' target='blank'>
             Github
           </Link>
         </section>

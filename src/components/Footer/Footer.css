@@ -37,11 +37,16 @@
 }
 
 .footer__link {
-  text-decoration: none;
   font-style: normal;
   margin-left: 20px;
   font-weight: 400;
   font-size: 13px;
   line-height: 1.23;
-  color: #000;
+}
+
+@media (max-width: 800px) {
+  .footer {
+    width: 100%;
+    padding: 80px 30px 0;
+  }
 }

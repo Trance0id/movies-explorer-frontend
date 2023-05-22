@@ -14,10 +14,42 @@
 }
 
 .page__heading {
+  max-width: 730px;
   margin: 0 auto;
   text-align: center;
   font-weight: 400;
   font-size: 50px;
   line-height: 1.16;
   letter-spacing: -0.04em;
+}
+
+.section-heading {
+  margin: 0;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #000;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.23;
+  letter-spacing: -0.04em;
+}
+
+.link {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+@media (max-width: 800px) {
+  .page__heading {
+    max-width: 680px;
+    font-size: 40px;
+    line-height: 1.3;
+  }
 }

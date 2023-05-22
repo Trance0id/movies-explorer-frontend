@@ -30,3 +30,9 @@
   font-weight: 500;
   line-height: 1.33;
 }
+
+@media (max-width: 800px) {
+  .nav-tab {
+    width: calc(100% - 2 * 20px);
+  }
+}

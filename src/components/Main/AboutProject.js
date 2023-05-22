@@ -6,7 +6,7 @@ export default function AboutProject() {
       <h2 className='about-project__heading section-heading'>
         О проекте
       </h2>
-      <ul className='about-project__details'>
+      <ul className='list about-project__details'>
         <li className='about-project__detail'>
           <h3 className='about-project__detail-heading'>
             Дипломный проект включал 5 этапов

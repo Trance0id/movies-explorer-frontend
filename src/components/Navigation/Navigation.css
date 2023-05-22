@@ -1,7 +1,6 @@
 .navigation {
   margin: 0;
   padding: 0;
-  list-style: none;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -14,7 +13,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;

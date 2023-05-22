@@ -3,19 +3,7 @@
   padding: 110px 0;
 }
 
-.section-heading {
-  margin: 0;
-  padding-bottom: 23px;
-  border-bottom: 1px solid #000;
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 1.23;
-  letter-spacing: -0.04em;
-}
-
 .about-project__details {
-  list-style: none;
-  margin: 0;
   padding: 70px 0 110px;
   display: flex;
   flex-direction: row;
@@ -27,13 +15,14 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
+  letter-spacing: -0.04em;
 }
 
 .about-project__detail-text {
   margin: 0;
   font-weight: 400;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 1.43;
 }
 
 .about-project__progress-bar {
@@ -70,4 +59,15 @@
 .about-project__progress-bar-first-cell {
   background-color: #000;
   color: #fff;
+}
+
+@media (max-width: 800px) {
+  .about-project {
+    width: calc(100% - 2 * 50px);
+    padding: 90px 0;
+  }
+  .about-project__detail-text {
+    font-size: 12px;
+    line-height: 1.5;
+  }
 }

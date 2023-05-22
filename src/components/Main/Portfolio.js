@@ -1,4 +1,5 @@
 import './Portfolio.css';
+import { Link } from 'react-router-dom';
 
 export default function Portfolio() {
   return (
@@ -6,30 +7,36 @@ export default function Portfolio() {
       <h2 className='portfolio__heading'>
         Портфолио
       </h2>
-      <ul className='portfolio__items'>
+      <ul className='list portfolio__items'>
         <li className='portfolio__item'>
-          <h3 className='portfolio__item-title'>
-            Статичный сайт
-          </h3>
-          <button className='portfolio__item-button'>
-            &rarr;
-          </button>
+          <Link to='' className='link portfolio__link'>
+            <h3 className='portfolio__item-title'>
+              Статичный сайт
+            </h3>
+            <button className='portfolio__item-button'>
+              &rarr;
+            </button>
+          </Link>
         </li>
         <li className='portfolio__item'>
-          <h3 className='portfolio__item-title'>
-            Адаптивный сайт
-          </h3>
-          <button className='portfolio__item-button'>
-            &rarr;
-          </button>
+          <Link to='' className='link portfolio__link'>
+            <h3 className='portfolio__item-title'>
+              Адаптивный сайт
+            </h3>
+            <button className='portfolio__item-button'>
+              &rarr;
+            </button>
+          </Link>
         </li>
         <li className='portfolio__item'>
-          <h3 className='portfolio__item-title'>
-            Одностраничное приложение
-          </h3>
-          <button className='portfolio__item-button'>
-            &rarr;
-          </button>
+          <Link to='' className='link portfolio__link'>
+            <h3 className='portfolio__item-title'>
+              Одностраничное приложение
+            </h3>
+            <button className='portfolio__item-button'>
+              &rarr;
+            </button>
+          </Link>
         </li>
       </ul>
     </section>
