@@ -5,9 +5,17 @@
   border-radius: 10px 10px 0 0;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1087px) {
   .promo {
     width: calc(100% - 2 * 20px);
     padding: 350px 0 315px;
+  }
+}
+
+@media (max-width: 689px) {
+  .promo {
+    margin-top: 14px;
+    width: calc(100% - 2 * 14px);
+    padding: 220px 0 212px;
   }
 }

@@ -31,8 +31,27 @@
   line-height: 1.33;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1087px) {
   .nav-tab {
     width: calc(100% - 2 * 20px);
+    padding-bottom: 17px;
+  }
+}
+
+@media (max-width: 689px) {
+  .nav-tab {
+    width: calc(100% - 2 * 14px);
+  }
+
+  .nav-tab__links {
+    gap: 6px;
+  }
+
+  .nav-tab__link {
+    min-width: 82px;
+    font-size: 10px;
+    line-height: 1.6;
+    padding: 5px 0;
+    border-radius: 6px;
   }
 }

@@ -10,8 +10,14 @@
   height: 38px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1087px) {
   .header {
     width: calc(100% - 2 * 30px);
+  }
+}
+
+@media (max-width: 689px) {
+  .header {
+    width: calc(100% - 2 * 14px);
   }
 }

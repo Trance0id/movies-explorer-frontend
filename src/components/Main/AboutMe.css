@@ -53,7 +53,7 @@
   border-radius: 10px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1087px) {
   .about-me {
     width: calc(100% - 2 * 50px);
     padding: 90px 0;
@@ -78,5 +78,48 @@
 
   .person-info__picture {
     width: 38.18%;
+  }
+}
+
+@media (max-width: 689px) {
+  .about-me {
+    width: calc(100% - 2 * 14px);
+    padding: 70px 0;
+  }
+
+  .person-info {
+    flex-direction: column-reverse;
+    padding-top: 60px;
+  }
+
+  .person-info__picture {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .person-info__heading {
+    margin-bottom: 20px;
+    font-size: 30px;
+    line-height: 1.2;
+
+    letter-spacing: -0.04em;
+  }
+
+  .person-info__subheading {
+    margin-bottom: 20px;
+    font-size: 11px;
+    line-height: 1.455;
+  }
+
+  .person-info__description {
+    margin-bottom: 40px;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1.455;
+  }
+
+  .person-info__link {
+    font-size: 14px;
+    line-height: 1.215;
   }
 }

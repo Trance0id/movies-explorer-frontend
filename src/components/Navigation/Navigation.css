@@ -7,7 +7,7 @@
 }
 
 .navigation__link {
-  margin-left: 30px;
+  margin-left: 10px;
   padding: 8px 20px;
   border-radius: 3px;
   display: flex;
@@ -21,4 +21,13 @@
 .navigation__link_login {
   background-color: #000;
   color: #fff;
+}
+
+@media (max-width: 689px) {
+  .navigation__link {
+    margin-left: 2px;
+    padding: 5px 12px;
+    font-size: 10px;
+    line-height: 1.6;
+  }
 }

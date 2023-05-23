@@ -46,10 +46,23 @@
   list-style-type: none;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1087px) {
   .page__heading {
     max-width: 680px;
     font-size: 40px;
     line-height: 1.3;
+  }
+}
+
+@media (max-width: 689px) {
+  .page__heading {
+    font-size: 29px;
+    line-height: 1.28;
+  }
+
+  .section-heading {
+    font-size: 18px;
+    line-height: 1.22;
+    padding-bottom: 28px;
   }
 }
