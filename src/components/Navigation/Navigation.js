@@ -9,7 +9,7 @@ export default function Navigation() {
           Регистрация
         </Link>
 
-        <Link className='link navigation__link navigation__link_login'>
+        <Link className='link navigation__link navigation__link_theme_dark'>
           Войти
         </Link>
       </nav>
