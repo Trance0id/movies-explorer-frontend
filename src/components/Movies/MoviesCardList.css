@@ -9,7 +9,24 @@
   align-items: center;
 }
 
-@media (max-width: 1087px) {
+.movies__more {
+  width: 100%;
+  padding: 50px 0 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.movies__more-button {
+  width: 320px;
+  aspect-ratio: 80 / 9;
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+/* @media (max-width: 1087px) {
   .movies__list {
     grid-template-columns: 100%;
   }
@@ -19,4 +36,4 @@
   .movies__list {
     grid-template-columns: 100%;
   }
-}
+} */

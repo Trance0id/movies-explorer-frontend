@@ -13,6 +13,7 @@ export default function MoviesCardList() {
       id: 2,
       name: 'Бег - это свобода',
       link: cardLink,
+      active: true,
     },
     {
       id: 3,
@@ -23,12 +24,13 @@ export default function MoviesCardList() {
       id: 4,
       name: 'Бег - это свобода',
       link: cardLink,
+      active: true,
     },
     {
       id: 5,
       name: 'Бег - это свобода',
       link: cardLink,
-    },
+},
     {
       id: 6,
       name: 'Бег - это свобода',
@@ -38,6 +40,7 @@ export default function MoviesCardList() {
       id: 7,
       name: 'Бег - это свобода',
       link: cardLink,
+      active: true,
     },
     {
       id: 8,
@@ -48,6 +51,7 @@ export default function MoviesCardList() {
       id: 9,
       name: 'Бег - это свобода',
       link: cardLink,
+      active: true,
     },
     {
       id: 10,
@@ -73,11 +77,7 @@ export default function MoviesCardList() {
       id: 14,
       name: 'Бег - это свобода',
       link: cardLink,
-    },
-    {
-      id: 15,
-      name: 'Бег - это свобода',
-      link: cardLink,
+      active: true,
     }
   ]
 
@@ -86,11 +86,16 @@ export default function MoviesCardList() {
       <ul className="movies__list">
         {movies.map((movie) => (
           <MoviesCard
-            key={movie._id}
+            key={movie.id}
             movie={movie}
           />
         ))}
       </ul>
+      <div className='movies__more'>
+        <button className='button movies__more-button'>
+          Ещё
+        </button>
+      </div>
     </section>
   );
 }

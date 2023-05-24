@@ -13,7 +13,7 @@ export default function Portfolio() {
             <h3 className='portfolio__item-title'>
               Статичный сайт
             </h3>
-            <button className='portfolio__item-button'>
+            <button className='button portfolio__item-button'>
               &rarr;
             </button>
           </Link>
@@ -23,7 +23,7 @@ export default function Portfolio() {
             <h3 className='portfolio__item-title'>
               Адаптивный сайт
             </h3>
-            <button className='portfolio__item-button'>
+            <button className='button portfolio__item-button'>
               &rarr;
             </button>
           </Link>
@@ -33,7 +33,7 @@ export default function Portfolio() {
             <h3 className='portfolio__item-title'>
               Одностраничное приложение
             </h3>
-            <button className='portfolio__item-button'>
+            <button className='button portfolio__item-button'>
               &rarr;
             </button>
           </Link>
