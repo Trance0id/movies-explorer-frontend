@@ -1,7 +1,6 @@
 import './MoviesCard.css';
 
-export default function MoviesCard( {movie}) {
-  // console.log(movie);
+export default function MoviesCard( { movie, like }) {
   return (
     <li className="movie">
       <div
@@ -11,11 +10,11 @@ export default function MoviesCard( {movie}) {
       <div className="movie__caption">
         <div className='movie__caption-title'>
           <h3 className="movie__caption-heading">{movie.name}</h3>
-          <button
+          {like && <button
             type="button"
             className={`button movie__button-like ${movie.active && 'movie__button-like_active'}`}
             aria-label="Нравится"
-          ></button>
+          ></button>}
         </div>
         <p className='movie__caption-length'>
           1ч 44м

@@ -60,7 +60,7 @@
   box-sizing: border-box;
   width: 36px;
   height: 20px;
-  background-color: #2be080;
+  background-color: #e8e8e8;
   border-style: none;
   border-radius: 20px;
   padding: 2px 2px;
@@ -77,6 +77,10 @@
   border-radius: 50%;
   background-color: #fff;
   transition: 0.3s ease-out;
+}
+
+.search-form__checkbox:checked + .search-form__switchbox {
+  background-color: #2be080;
 }
 
 .search-form__checkbox:checked + .search-form__switchbox > .search-form__switcher {

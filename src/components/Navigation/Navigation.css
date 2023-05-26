@@ -1,4 +1,17 @@
 .navigation {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation__films {
+  padding-left: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.navigation__auth {
   margin: 0;
   padding: 0;
   display: flex;
@@ -18,9 +31,23 @@
   line-height: 1.33;
 }
 
+.navigation__link_active {
+  font-weight: 400;
+}
+
 .navigation__link_theme_dark {
   background-color: #000;
   color: #fff;
+}
+
+.navigation__link-icon {
+  box-sizing: border-box;
+  padding: 8px 7.25px;
+  margin-left: 17px;
+  width: 26px;
+  height: 30px;
+  background-color: #f9f9f9;
+  border-radius: 3px;
 }
 
 @media (max-width: 689px) {
