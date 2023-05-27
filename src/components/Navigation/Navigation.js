@@ -1,5 +1,5 @@
 import './Navigation.css';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import iconProfile from '../../images/icon-profile.svg';
 
 
@@ -18,26 +18,17 @@ export default function Navigation() {
       (
         <div className='navigation'>
           <nav className="navigation__films">
-            <NavLink to='/movies' className={
-              ({ isActive }) =>
-            `link navigation__link ${isActive && 'navigation__link_active'}`
-            }>
+            <Link to='/movies' className='link navigation__link navigation__link_type_movies'>
               Фильмы
-            </NavLink>
-            <NavLink to='/saved-movies' className={
-              ({ isActive }) =>
-            `link navigation__link ${isActive && 'navigation__link_active'}`
-            }>
+            </Link>
+            <Link to='/saved-movies' className='link navigation__link navigation__link_type_movies'>
               Сохранённые фильмы
-            </NavLink>
+            </Link>
           </nav>
-          <NavLink to='/profile' className={
-            ({ isActive }) =>
-          `link navigation__link ${isActive && 'navigation__link_active'}`
-          }>
+          <Link to='/profile' className='link navigation__link navigation__link_type_profile'>
             Аккаунт
             <img src={iconProfile} alt='Профиль' className='navigation__link-icon' />
-          </NavLink>
+          </Link>
         </div>
       )
 

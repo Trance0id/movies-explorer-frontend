@@ -26,18 +26,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 12px;
   line-height: 1.33;
-}
-
-.navigation__link_active {
-  font-weight: 400;
 }
 
 .navigation__link_theme_dark {
   background-color: #000;
   color: #fff;
+}
+
+.navigation__link_type_movies {
+  margin-right: -34px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.38;
+}
+
+.navigation__link_type_movies:first-of-type {
+  font-weight: 500;
+}
+
+.navigation__link_type_profile {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
 }
 
 .navigation__link-icon {

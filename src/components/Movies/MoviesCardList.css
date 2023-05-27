@@ -3,7 +3,7 @@
   padding: 70px 0 10px;
   width: fit-content;
   display: grid;
-  grid-template-columns: repeat(3, minmax(300px, 364px));
+  grid-template-columns: repeat(3, 364px);
   gap: 37px 24px;
   justify-items: center;
   align-items: center;
@@ -26,13 +26,14 @@
   line-height: 1.25;
 }
 
-/* @media (max-width: 1087px) {
+@media (max-width: 1087px) {
   .movies__list {
-    grid-template-columns: 100%;
+    gap: 30px;
+    grid-template-columns: repeat(2, minmax(339px, 478px));
   }
 }
 
-@media (max-width: 689px) {
+/* @media (max-width: 689px) {
   .movies__list {
     grid-template-columns: 100%;
   }
