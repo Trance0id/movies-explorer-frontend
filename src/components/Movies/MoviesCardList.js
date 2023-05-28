@@ -5,7 +5,7 @@ import Preloader from '../Preloader/Preloader';
 export default function MoviesCardList( { movies, like, more }) {
 
   return (
-    <section aria-label="Избранные фильмы">
+    <section className='movies__section' aria-label="Фильмы">
       <Preloader />
       <ul className="movies__list">
         {movies.map((movie) => (

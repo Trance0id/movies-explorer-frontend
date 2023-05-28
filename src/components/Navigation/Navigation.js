@@ -17,18 +17,23 @@ export default function Navigation() {
       ) : (path === '/movies' || path === '/saved-movies' || path === '/profile') &&
       (
         <div className='navigation'>
-          <nav className="navigation__films">
-            <Link to='/movies' className='link navigation__link navigation__link_type_movies'>
-              Фильмы
-            </Link>
-            <Link to='/saved-movies' className='link navigation__link navigation__link_type_movies'>
-              Сохранённые фильмы
+          <button className='button navigation__burger'>
+              &#9776;
+          </button>
+          <nav className="navigation__wrapper">
+            <div className='navigation__films'>
+              <Link to='/movies' className='link navigation__link navigation__link_type_movies'>
+                Фильмы
+              </Link>
+              <Link to='/saved-movies' className='link navigation__link navigation__link_type_movies'>
+                Сохранённые фильмы
+              </Link>
+            </div>
+            <Link to='/profile' className='link navigation__link navigation__link_type_profile'>
+              Аккаунт
+              <img src={iconProfile} alt='Профиль' className='navigation__link-icon' />
             </Link>
           </nav>
-          <Link to='/profile' className='link navigation__link navigation__link_type_profile'>
-            Аккаунт
-            <img src={iconProfile} alt='Профиль' className='navigation__link-icon' />
-          </Link>
         </div>
       )
 

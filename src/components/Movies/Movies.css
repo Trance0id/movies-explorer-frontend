@@ -8,8 +8,14 @@
   align-items: center;
 }
 
-@media (max-width: 1087px) {
+@media (max-width: 915px) {
   .movies {
     padding: 0 30px;
+  }
+}
+
+@media (max-width: 399px) {
+  .movies {
+    padding: 0 10px;
   }
 }

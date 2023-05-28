@@ -48,7 +48,7 @@
   letter-spacing: -0.04em;
 }
 
-@media (max-width: 1087px) {
+@media (max-width: 915px) {
   .techs {
     padding: 90px 50px;
   }
@@ -60,7 +60,7 @@
   }
 }
 
-@media (max-width: 689px) {
+@media (max-width: 399px) {
   .techs {
     padding: 70px 18px;
     background-color: #fff;

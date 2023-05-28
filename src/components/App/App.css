@@ -55,7 +55,7 @@
   list-style-type: none;
 }
 
-@media (max-width: 1087px) {
+@media (max-width: 915px) {
   .page__heading {
     max-width: 680px;
     font-size: 40px;
@@ -63,7 +63,7 @@
   }
 }
 
-@media (max-width: 689px) {
+@media (max-width: 399px) {
   .page__heading {
     font-size: 29px;
     line-height: 1.28;

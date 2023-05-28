@@ -1,14 +1,30 @@
 .navigation {
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
-.navigation__films {
+.navigation__burger {
+  display: none;
+  position: absolute;
+  right: 0;
+  padding: 10px 8px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.navigation__wrapper {
+  width: 100%;
   padding-left: 30px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.navigation__films {
+  display: flex;
 }
 
 .navigation__auth {
@@ -63,7 +79,17 @@
   border-radius: 3px;
 }
 
-@media (max-width: 689px) {
+@media (max-width: 915px) {
+  .navigation__burger {
+    display: block;
+  }
+
+  .navigation__wrapper {
+    display: none;
+  }
+}
+
+@media (max-width: 399px) {
   .navigation__link {
     margin-left: 2px;
     padding: 5px 12px;

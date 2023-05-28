@@ -53,7 +53,7 @@
   border-radius: 10px;
 }
 
-@media (max-width: 1087px) {
+@media (max-width: 915px) {
   .about-me {
     width: calc(100% - 2 * 50px);
     padding: 90px 0;
@@ -81,7 +81,7 @@
   }
 }
 
-@media (max-width: 689px) {
+@media (max-width: 399px) {
   .about-me {
     width: calc(100% - 2 * 14px);
     padding: 70px 0;
