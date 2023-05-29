@@ -7,6 +7,7 @@ import Footer from '../Footer/Footer';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
+import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
             <Header />
             <Profile />
         </>} />
+
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
         {/* <Footer /> */}
     </div>
