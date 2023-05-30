@@ -14,7 +14,7 @@ export default function PageNotFound() {
           Страница не найдена
         </p>
       </h2>
-      <button type='button' className='button page-not-found__back-button' onClick={() => navigate(-1)}>
+      <button type='button' className='interactive button page-not-found__back-button' onClick={() => navigate(-1)}>
         Назад
       </button>
 

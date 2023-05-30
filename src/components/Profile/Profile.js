@@ -17,11 +17,11 @@ export default function Profile() {
           <input type='text' className='profile__input' placeholder='Введите E-mail' value='pochta@yandex.ru' />
         </label>
         <div className='profile__filler'/>
-        <button type='submit' className='button profile__submit'>
+        <button type='submit' className='interactive button profile__submit'>
           Редактировать
         </button>
       </form>
-      <Link to='/' className='link profile__logout-link'>
+      <Link to='/' className='interactive link profile__logout-link'>
         Выйти из аккаунта
       </Link>
 

@@ -24,13 +24,12 @@ export default function AboutMe() {
               Хочу попробовать сменить род деятельности на разработку.
             </p>
           </section>
-          <Link to='https://github.com/Trance0id' className='link person-info__link' target='blank'>
+          <Link to='https://github.com/Trance0id' className='interactive link person-info__link' target='_blank'>
             Github
           </Link>
         </section>
         <img className='person-info__picture' src={myPhoto} alt='Фото профиля' />
       </article>
-
     </section>
   );
 }

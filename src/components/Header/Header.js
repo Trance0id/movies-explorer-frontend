@@ -13,7 +13,7 @@ export default function Header() {
           <img
             src={logo}
             alt="Поиск фильмов"
-            className="header__logo"
+            className="interactive header__logo"
             onClick={navigateLanding}
           />
         <Navigation />

@@ -9,33 +9,39 @@ export default function Portfolio() {
       </h2>
       <ul className='list portfolio__items'>
         <li className='portfolio__item'>
-          <Link to='' className='link portfolio__link'>
+          <Link to='https://trance0id.github.io/how-to-learn/'
+            className='interactive link portfolio__link'
+            target='_blank'>
             <h3 className='portfolio__item-title'>
               Статичный сайт
             </h3>
-            <button className='button portfolio__item-button'>
+            <span className='portfolio__item-button'>
               &rarr;
-            </button>
+            </span>
           </Link>
         </li>
         <li className='portfolio__item'>
-          <Link to='' className='link portfolio__link'>
+          <Link to='https://trance0id.github.io/start-adaptive-VasnevD/'
+            className='interactive link portfolio__link'
+            target='_blank'>
             <h3 className='portfolio__item-title'>
               Адаптивный сайт
             </h3>
-            <button className='button portfolio__item-button'>
+            <span className='portfolio__item-button'>
               &rarr;
-            </button>
+            </span>
           </Link>
         </li>
         <li className='portfolio__item'>
-          <Link to='' className='link portfolio__link'>
+          <Link to='https://mesto.trance0id.nomoredomains.monster/'
+            className='interactive link portfolio__link'
+            target='_blank'>
             <h3 className='portfolio__item-title'>
               Одностраничное приложение
             </h3>
-            <button className='button portfolio__item-button'>
+            <span className='portfolio__item-button'>
               &rarr;
-            </button>
+            </span>
           </Link>
         </li>
       </ul>
