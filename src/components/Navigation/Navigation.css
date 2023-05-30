@@ -170,7 +170,7 @@
   }
 
   .navigation__burger-state:checked ~ .navigation__burger {
-    top: 13px;
+    top: 16px;
     right: 24px;
   }
 

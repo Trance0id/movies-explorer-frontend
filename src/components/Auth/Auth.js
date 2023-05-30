@@ -3,12 +3,15 @@ import './Auth.css'
 
 export default function Auth( props ) {
   return (
-    <main className='auth'>
+    <div className='auth__container'>
       <Link to='/'className='interactive link auth__logo'/>
       <h2 className='auth__heading'>
         {props.heading}
       </h2>
-      <form className='auth__form'>
+      <form
+        className='auth__form'
+        onSubmit={(e) => props.onFormSubmit(e)}
+      >
         {props.hasNameField &&
           <label className='auth__label'>
             Имя
@@ -53,6 +56,6 @@ export default function Auth( props ) {
           {props.linkText}
         </Link>
       </caption>
-    </main>
+    </div>
   );
 };
