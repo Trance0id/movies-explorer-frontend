@@ -12,23 +12,17 @@ export default function Footer() {
           <div className='footer__year'>
             &copy; {new Date().getFullYear()}
           </div>
-          <nav>
-            <ul className='footer__contacts'>
-              <li>
+          <nav className='footer__contacts'>
                 <Link to='https://practicum.yandex.ru/'
                   className='interactive link footer__link'
                   target='_blank'>
                     Яндекс.Практикум
                 </Link>
-              </li>
-              <li>
                 <Link to='https://github.com/Trance0id'
                   className='interactive link footer__link'
                   target='_blank'>
                     Github
                 </Link>
-              </li>
-            </ul>
           </nav>
         </section>
       </footer>

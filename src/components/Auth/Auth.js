@@ -9,15 +9,21 @@ export default function Auth( props ) {
         {props.heading}
       </h2>
       <form
+        name={props.formName}
         className='auth__form'
         onSubmit={(e) => props.onFormSubmit(e)}
       >
         {props.hasNameField &&
           <label className='auth__label'>
             Имя
-            <input type='text'
+            <input
+              type='text'
               className='auth__input'
               placeholder='Введите имя'
+              name='name'
+              required
+              minLength={2}
+              maxLength={30}
             />
             <span className='auth__error'>
             </span>
@@ -25,19 +31,25 @@ export default function Auth( props ) {
           }
         <label className='auth__label'>
           E-mail
-          <input type='email'
+          <input
+            type='email'
             className='auth__input'
             placeholder='Введите E-mail'
+            name='email'
+            required
           />
           <span className='auth__error'>
           </span>
         </label>
         <label className='auth__label'>
           Пароль
-          <input type='password'
+          <input
+            type='password'
             className='auth__input auth__input_incorrect'
             placeholder='Введите пароль'
             defaultValue='dskjbfdsjdfslk'
+            name='password'
+            required
           />
           <span className='auth__error'>
             Что-то пошло не так...

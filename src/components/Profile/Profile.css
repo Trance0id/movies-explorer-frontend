@@ -41,6 +41,10 @@
   border-bottom: none;
 }
 
+.profile__label:focus-within {
+  border-bottom: 1px solid #000;
+}
+
 .profile__input {
   border: none;
   outline: none;

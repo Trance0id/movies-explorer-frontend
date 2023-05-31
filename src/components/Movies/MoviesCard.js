@@ -7,18 +7,18 @@ export default function MoviesCard( { movie, like }) {
         className="interactive movie__image"
         style={{ backgroundImage: `url(${movie.link})` }}
       ></div>
-      <div className="movie__caption">
+      <div className="interactive movie__caption">
         <div className='movie__caption-title'>
           <h3 className="movie__caption-heading">{movie.name}</h3>
           {like ?
           <button
             type="button"
-            className={`button movie__button movie__button_type_like ${movie.active && 'movie__button_active'}`}
+            className={`interactive button movie__button movie__button_type_like ${movie.active && 'movie__button_active'}`}
             aria-label="Нравится"
           /> :
           <button
             type="button"
-            className='button movie__button movie__button_type_delete'
+            className='interactive button movie__button movie__button_type_delete'
             aria-label="Удалить"
           />}
         </div>

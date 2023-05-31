@@ -20,7 +20,9 @@ export default function Navigation() {
       <label className='interactive button navigation__burger' htmlFor='burger' />
       <nav className="navigation__wrapper">
         <div className='navigation__films'>
-          <NavLink to='/' className='interactive link navigation__link navigation__link_type_movies navigation__link_type_home'>
+          <NavLink to='/' className={( { isActive } ) =>
+            `interactive link navigation__link navigation__link_type_movies
+            navigation__link_type_home ${isActive && 'navigation__link_type_active'}`}>
             Главная
           </NavLink>
           <NavLink to='/movies' className={( { isActive } ) =>
@@ -33,7 +35,7 @@ export default function Navigation() {
           </NavLink>
         </div>
         <NavLink to='/profile' className={( { isActive } ) =>
-            `link navigation__link navigation__link_type_profile ${isActive && 'navigation__link_type_active'}`}>
+            `interactive link navigation__link navigation__link_type_profile ${isActive && 'navigation__link_type_active'}`}>
           Аккаунт
           <img src={iconProfile} alt='Профиль' className='navigation__link-icon' />
         </NavLink>
