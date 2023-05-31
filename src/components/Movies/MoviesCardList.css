@@ -7,12 +7,11 @@
 
 .movies__list {
   margin: 0 auto;
-  padding: 70px 0 10px;
-  width: fit-content;
+  padding: 69px 0 10px;
   max-width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, 364px);
-  gap: 37px 24px;
+  gap: 35px 24px;
   justify-items: center;
   align-items: center;
 }
@@ -36,14 +35,27 @@
 
 @media (max-width: 915px) {
   .movies__list {
-    gap: 30px;
+    gap: 29px 30px;
     grid-template-columns: repeat(auto-fit, 339px);
+  }
+
+  .movies__more {
+    padding-top: 70px;
+    padding-bottom: 85px;
   }
 }
 
 @media (max-width: 399px) {
   .movies__list {
+    padding-top: 40px;
     grid-template-columns: minmax(300px, 379px);
     gap: 14px;
+  }
+
+  .movies__more {
+    padding-top: 66px;
+    padding-bottom: 79px;
+    width: calc(100% - 2 * 30px);
+    height: 36px;
   }
 }

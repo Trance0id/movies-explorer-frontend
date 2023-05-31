@@ -1,6 +1,7 @@
 .about-project {
+  box-sizing: border-box;
   width: calc(100% - 2 * 70px);
-  padding: 110px 0;
+  padding: 113px 0;
 }
 
 .about-project__details {
@@ -20,6 +21,7 @@
 
 .about-project__detail-text {
   margin: 0;
+  max-width: 550px;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.43;
@@ -28,10 +30,10 @@
 .about-project__progress-bar {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 4fr;
   align-items: center;
   justify-items: center;
-  row-gap: 14px;
+  row-gap: 15px;
 }
 
 .about-project__progress-bar-first-line {
@@ -42,7 +44,7 @@
   margin: 0;
   font-weight: 400;
   font-size: 14px;
-  line-height: 1.21;
+  line-height: 1.22;
   background-color: #f2f2f2;
 }
 
@@ -65,20 +67,30 @@
     width: calc(100% - 2 * 50px);
     padding: 90px 0;
   }
+
+  .about-project__details {
+    padding-bottom: 93px;
+    gap: 30px;
+  }
+
+  .about-project__detail-heading {
+    margin-bottom: 22px;
+  }
+
   .about-project__detail-text {
     font-size: 12px;
     line-height: 1.5;
   }
 }
 
-@media (max-width: 915px) {
+@media (max-width: 399px) {
   .about-project {
     width: calc(100% - 2 * 18px);
-    padding: 70px 0;
+    padding: 71px 0 70px;
   }
 
   .about-project__details {
-    padding: 60px 0;
+    padding: 61px 0 59px;
     flex-direction: column;
     gap: 56px;
   }
@@ -97,7 +109,7 @@
 
   .about-project__progress-bar {
     grid-template-columns: 1fr 2fr;
-    row-gap: 10px;
+    row-gap: 8px;
   }
 
   .about-project__progress-bar-first-line {

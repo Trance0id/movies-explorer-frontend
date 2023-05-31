@@ -17,7 +17,6 @@ export default function PageNotFound() {
       <button type='button' className='interactive button page-not-found__back-button' onClick={() => navigate(-1)}>
         Назад
       </button>
-
     </main>
   )
 };

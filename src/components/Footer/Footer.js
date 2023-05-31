@@ -8,11 +8,11 @@ export default function Footer() {
         <p className='footer__text'>
           Учебный проект Яндекс.Практикум х BeatFilm.
         </p>
-        <section className='footer__credits'>
-          <time className='footer__year'>
+        <section className='footer__credits' aria-label='Информация о странице'>
+          <div className='footer__year'>
             &copy; {new Date().getFullYear()}
-          </time>
-          <address>
+          </div>
+          <nav>
             <ul className='footer__contacts'>
               <li>
                 <Link to='https://practicum.yandex.ru/'
@@ -29,7 +29,7 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </address>
+          </nav>
         </section>
       </footer>
     );

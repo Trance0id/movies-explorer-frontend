@@ -1,6 +1,6 @@
 .about-me {
   width: calc(100% - 2 * 70px);
-  padding: 110px 0 100px;
+  padding: 110px 0 101px;
 }
 
 .person-info {
@@ -48,7 +48,7 @@
 
 .person-info__picture {
   width: 23.7%;
-  aspect-ratio: 0.83;
+  aspect-ratio: 200 / 243;
   object-fit: cover;
   border-radius: 10px;
 }
@@ -84,7 +84,7 @@
 @media (max-width: 399px) {
   .about-me {
     width: calc(100% - 2 * 14px);
-    padding: 70px 0;
+    padding: 71px 0;
   }
 
   .person-info {

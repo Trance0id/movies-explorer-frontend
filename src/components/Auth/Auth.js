@@ -19,8 +19,8 @@ export default function Auth( props ) {
               className='auth__input'
               placeholder='Введите имя'
             />
-            <div className='auth__error'>
-            </div>
+            <span className='auth__error'>
+            </span>
           </label>
           }
         <label className='auth__label'>
@@ -29,33 +29,33 @@ export default function Auth( props ) {
             className='auth__input'
             placeholder='Введите E-mail'
           />
-          <div className='auth__error'>
-          </div>
+          <span className='auth__error'>
+          </span>
         </label>
         <label className='auth__label'>
           Пароль
           <input type='password'
             className='auth__input auth__input_incorrect'
             placeholder='Введите пароль'
-            value='dskjbfdsjdfslk'
+            defaultValue='dskjbfdsjdfslk'
           />
-          <div className='auth__error'>
+          <span className='auth__error'>
             Что-то пошло не так...
-          </div>
+          </span>
         </label>
         <div className='auth__filler'/>
         <button type='submit' className='interactive button auth__submit'>
           {props.submitText}
         </button>
       </form>
-      <caption className='auth__caption'>
+      <div className='auth__caption'>
         <p className='auth__caption-text'>
           {props.submitCaptionText}
         </p>
         <Link to={props.linkUrl} className='interactive link auth__caption-link'>
           {props.linkText}
         </Link>
-      </caption>
+      </div>
     </div>
   );
 };

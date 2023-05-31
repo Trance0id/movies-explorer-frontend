@@ -7,29 +7,29 @@ export default function SavedMovies() {
   const movies = [
     {
       id: 1,
-      name: 'Бег - это свобода',
+      name: 'Бег это свобода',
       link: cardLink,
     },
     {
       id: 2,
-      name: 'Бег - это свобода',
+      name: 'Бег это свобода',
       link: cardLink,
       active: true,
     },
     {
       id: 3,
-      name: 'Бег - это свобода',
+      name: 'Бег это свобода',
       link: cardLink,
     },
     {
       id: 4,
-      name: 'Бег - это свобода',
+      name: 'Бег это свобода',
       link: cardLink,
       active: true,
     },
     {
       id: 5,
-      name: 'Бег - это свобода',
+      name: 'Бег это свобода',
       link: cardLink,
     }
   ]

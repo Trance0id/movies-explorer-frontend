@@ -8,9 +8,9 @@ export default function AboutMe() {
       <h2 className='about-me__heading section-heading'>
         Студент
       </h2>
-      <article className='person-info'>
+      <article className='person-info'aria-label="Данные студента">
         <section className='person-info__text'>
-          <section>
+          <div>
             <h3 className='person-info__heading'>
               Дмитрий
             </h3>
@@ -23,7 +23,7 @@ export default function AboutMe() {
               Недавно начал кодить. С 2016 года работаю в сети частных клиник.
               Хочу попробовать сменить род деятельности на разработку.
             </p>
-          </section>
+          </div>
           <Link to='https://github.com/Trance0id' className='interactive link person-info__link' target='_blank'>
             Github
           </Link>

@@ -8,7 +8,7 @@
 @media (max-width: 915px) {
   .promo {
     width: calc(100% - 2 * 20px);
-    padding: 350px 0 315px;
+    padding: 350px 0 314px;
   }
 }
 

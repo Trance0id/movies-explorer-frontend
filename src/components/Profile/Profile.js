@@ -21,9 +21,9 @@ export default function Profile() {
           Редактировать
         </button>
       </form>
-      <Link to='/' className='interactive link profile__logout-link'>
+      <button className='interactive button profile__logout-button'>
         Выйти из аккаунта
-      </Link>
+      </button>
 
     </main>
   );

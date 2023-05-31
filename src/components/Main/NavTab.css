@@ -32,13 +32,14 @@
 @media (max-width: 915px) {
   .nav-tab {
     width: calc(100% - 2 * 20px);
-    padding-bottom: 17px;
+    padding-bottom: 30px;
   }
 }
 
 @media (max-width: 399px) {
   .nav-tab {
     width: calc(100% - 2 * 14px);
+    padding-bottom: 17px;
   }
 
   .nav-tab__links {

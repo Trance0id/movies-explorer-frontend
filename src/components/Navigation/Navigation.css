@@ -5,6 +5,14 @@
   position: relative;
 }
 
+.navigation_logged-out {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .navigation__burger {
   display: none;
   position: absolute;
@@ -23,7 +31,7 @@
 
 .navigation__wrapper {
   width: 100%;
-  padding-left: 30px;
+  padding-left: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,14 +40,7 @@
 
 .navigation__films {
   display: flex;
-}
-
-.navigation__auth {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  padding-left: 20px;
 }
 
 .navigation__link {
@@ -64,20 +65,22 @@
 }
 
 .navigation__link_type_movies {
-  margin-right: -34px;
+  margin-left: 0;
+  padding: 0 9px;
   font-weight: 400;
   font-size: 13px;
   line-height: 1.38;
 }
 
-.navigation__link_type_movies:first-of-type {
-  font-weight: 500;
-}
-
 .navigation__link_type_profile {
+  padding: 0;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.14;
+}
+
+.navigation__link_type_active {
+  font-weight: 500;
 }
 
 .navigation__link-icon {
@@ -111,6 +114,7 @@
 
   .navigation__link_type_active {
     border-bottom: 2px solid #000;
+    border-radius: 0;
   }
 
   .navigation__burger {
@@ -121,23 +125,28 @@
     position: fixed;
     right: 0;
     top: 0;
-    width: 67vw;
+    width: 68vw;
     height: 100vh;
     background-color: #fff;
     z-index: 100;
-    padding: 21% 0 13%;
+    padding: 145px 0 93px;
     box-sizing: border-box;
     flex-direction: column;
-    box-shadow: -34vw 0 rgba(0, 0, 0, 0.3);
+    box-shadow: -33vw 0 rgba(0, 0, 0, 0.3);
     opacity: 0;
     visibility: hidden;
   }
 
   .navigation__films {
+    padding-left: 0;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #fff;
+  }
+
+  .navigation__link_type_profile {
+    margin-left: 0;
   }
 
   .navigation__burger-state:checked ~ .navigation__wrapper {
@@ -149,39 +158,51 @@
 
   .navigation__burger-state:checked ~ .navigation__burger {
     position: fixed;
+    background-size: 70%;
     top: 15px;
-    right: 30px;
+    right: 16px;
     background-image: url(../../images/icon-close.svg);
   }
 }
 
 @media (max-width: 399px) {
   .navigation__link {
-    padding: 5px 12px;
+    margin-left: 0;
+    padding: 5px 13px;
     font-size: 10px;
     line-height: 1.6;
-    border-radius: 0;
   }
 
   .navigation__burger {
     width: 40px;
     height: 43px;
-    right: 10px;
+    right: 0px;
+    background-size: 95%;
   }
 
   .navigation__burger-state:checked ~ .navigation__burger {
-    top: 16px;
-    right: 24px;
+    top: 8px;
+    right: 9px;
+    background-size: 81%;
   }
 
   .navigation__wrapper {
     width: 100vw;
+    padding-top: 145px;
+    padding-bottom: 43px;
   }
 
   .navigation__link_type_movies {
+    box-sizing: border-box;
+    padding: 0 0 6px;
+    margin: 0 0 18px;
     font-weight: 500;
     font-size: 18px;
     line-height: 1.22;
+  }
+
+  .navigation__link_type_movies:last-child {
+    margin-top: -2px;
   }
 
   .navigation__link_type_profile {

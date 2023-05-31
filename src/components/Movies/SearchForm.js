@@ -2,7 +2,7 @@ import './SearchForm.css'
 
 export default function SearchForm() {
   return (
-    <section className='search-form'>
+    <section className='search-form' aria-label='Форма поиска фильмов'>
       <form name='search-form'>
         <fieldset className='search-form__films-search'>
           <input type='text' className='search-form__input' placeholder='Фильм' />
