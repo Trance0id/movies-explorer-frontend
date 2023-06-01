@@ -1,0 +1,125 @@
+.about-me {
+  width: calc(100% - 2 * 70px);
+  padding: 110px 0 101px;
+}
+
+.person-info {
+  padding: 66px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.person-info__text {
+  max-width: 600px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.person-info__heading {
+  margin: 0 0 18px 0;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.16;
+
+  letter-spacing: -0.04em;
+}
+
+.person-info__subheading {
+  margin: 0 0 26px 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11;
+}
+
+.person-info__description {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.57;
+}
+
+.person-info__link {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.215;
+}
+
+.person-info__picture {
+  width: 23.7%;
+  aspect-ratio: 200 / 243;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (max-width: 915px) {
+  .about-me {
+    width: calc(100% - 2 * 50px);
+    padding: 90px 0;
+  }
+
+  .person-info__heading {
+    margin-bottom: 16px;
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  .person-info__subheading {
+    margin-bottom: 20px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .person-info__description {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .person-info__picture {
+    width: 38.18%;
+  }
+}
+
+@media (max-width: 399px) {
+  .about-me {
+    width: calc(100% - 2 * 14px);
+    padding: 71px 0;
+  }
+
+  .person-info {
+    flex-direction: column-reverse;
+    padding-top: 60px;
+  }
+
+  .person-info__picture {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .person-info__heading {
+    margin-bottom: 20px;
+    font-size: 30px;
+    line-height: 1.2;
+
+    letter-spacing: -0.04em;
+  }
+
+  .person-info__subheading {
+    margin-bottom: 20px;
+    font-size: 11px;
+    line-height: 1.455;
+  }
+
+  .person-info__description {
+    margin-bottom: 40px;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1.455;
+  }
+
+  .person-info__link {
+    font-size: 14px;
+    line-height: 1.215;
+  }
+}

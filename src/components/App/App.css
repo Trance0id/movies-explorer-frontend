@@ -1,0 +1,89 @@
+.page {
+  margin: 0 auto;
+  background-color: #fff;
+  max-width: 1280px;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: #000;
+  font-family: Inter, Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+.page-heading {
+  max-width: 730px;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.16;
+  letter-spacing: -0.04em;
+}
+
+.section-heading {
+  margin: 0;
+  padding-bottom: 21px;
+  border-bottom: 1px solid #000;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.23;
+  letter-spacing: -0.04em;
+}
+
+.link {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.button {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.interactive {
+  cursor: pointer;
+  transition: opacity 0.2s ease-out;
+}
+
+.interactive:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 915px) {
+  .page-heading {
+    max-width: 680px;
+    font-size: 40px;
+    line-height: 1.3;
+  }
+
+  .section-heading {
+    padding-bottom: 22.5px;
+  }
+}
+
+@media (max-width: 399px) {
+  .page-heading {
+    font-size: 29px;
+    line-height: 1.28;
+  }
+
+  .section-heading {
+    font-size: 18px;
+    line-height: 1.22;
+    padding-bottom: 27px;
+  }
+}
