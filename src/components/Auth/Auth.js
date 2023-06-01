@@ -50,6 +50,8 @@ export default function Auth( props ) {
             defaultValue='dskjbfdsjdfslk'
             name='password'
             required
+            minLength={8}
+            maxLength={30}
           />
           <span className='auth__error'>
             Что-то пошло не так...

@@ -37,6 +37,7 @@ export default function Profile() {
         </button>
       </form>
       <button
+        type='button'
         className='interactive button profile__logout-button'
         onClick={() => navigate('/')}
       >

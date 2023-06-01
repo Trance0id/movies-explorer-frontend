@@ -17,7 +17,7 @@ export default function MoviesCardList( { movies, like, more }) {
         ))}
       </ul>
       {more && <div className='movies__more'>
-        <button className='interactive button movies__more-button'>
+        <button type='button'className='interactive button movies__more-button'>
           Ещё
         </button>
       </div>}

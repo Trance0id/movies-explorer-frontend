@@ -10,6 +10,8 @@ export default function SearchForm() {
             className='search-form__input'
             placeholder='Фильм'
             name='keywords'
+            required
+            minLength={2}
            />
           <button type='submit' className='interactive button search-form__submit'>Поиск</button>
         </fieldset>

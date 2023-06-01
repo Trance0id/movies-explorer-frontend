@@ -13,12 +13,12 @@ export default function MoviesCard( { movie, like }) {
           {like ?
           <button
             type="button"
-            className={`interactive button movie__button movie__button_type_like ${movie.active && 'movie__button_active'}`}
+            className={`button movie__button movie__button_type_like ${movie.active && 'movie__button_active'}`}
             aria-label="Нравится"
           /> :
           <button
             type="button"
-            className='interactive button movie__button movie__button_type_delete'
+            className='button movie__button movie__button_type_delete'
             aria-label="Удалить"
           />}
         </div>
