@@ -1,7 +1,6 @@
 import './SavedMovies.css';
 import SearchForm from '../Movies/SearchForm';
 import MoviesCardList from '../Movies/MoviesCardList';
-import cardLink from '../../images/movieImg.png';
 
 export default function SavedMovies({ movies, onFormSubmit, preloader }) {
   return (

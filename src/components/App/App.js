@@ -18,26 +18,66 @@ import getMovies from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
 
 function App() {
-  const [movies, setMovies] = React.useState([]);
+  const [moviesData, setMoviesData] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
   const [showPreloader, setShowPreloader] = React.useState(false);
 
-  const searchMovies = () => {
+  const makeMoviesData = (moviesArray, formdata) => {
+    return {
+      query: formdata.query,
+      short: formdata.short,
+      movies: moviesArray,
+      moviesCount: moviesArray.length,
+    };
+  };
+
+  const getMoviesFormData = (formdata) => {
+    const formDataObj = {};
+
+    for (let [key, value] of formdata) {
+      formDataObj[key] = value;
+    }
+
+    return formDataObj;
+  };
+
+  const saveMoviesData = (data) => {
+    for (const [key, value] of Object.entries(data)) {
+      localStorage.setItem(key, value);
+    }
+  };
+
+  const getMoviesData = () => {
+    const moviesData = {};
+    moviesData['short'] = localStorage.getItem('short');
+    moviesData['query'] = localStorage.getItem('query');
+    return moviesData;
+  };
+
+  const submitMoviesSearch = (formdata) => {
     setShowPreloader(true);
     getMovies()
-      .then((res) => setMovies(res))
+      .then((res) => {
+        const currentData = makeMoviesData(res, getMoviesFormData(formdata));
+        setMoviesData(currentData);
+        saveMoviesData(currentData);
+      })
       .catch((err) => console.log(err))
       .finally(() => setShowPreloader(false));
   };
 
-  const searchSavedMovies = (keywords) => {
-    setShowPreloader(true);
-    mainApi
-      .getMovies(keywords)
-      .then((res) => setMovies(res))
-      .catch((err) => console.log(err))
-      .finally(() => setShowPreloader(false));
-  };
+  // const searchSavedMovies = (keywords) => {
+  //   setShowPreloader(true);
+  //   mainApi
+  //     .getMovies(keywords)
+  //     .then((res) => setMovies(res))
+  //     .catch((err) => console.log(err))
+  //     .finally(() => setShowPreloader(false));
+  // };
+  React.useEffect(() => {
+    console.log(moviesData);
+    setMoviesData(getMoviesData());
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -58,7 +98,7 @@ function App() {
             element={
               <>
                 <Header />
-                <Movies movies={movies} onFormSubmit={searchMovies} preloader={showPreloader} />
+                <Movies data={moviesData} onFormSubmit={submitMoviesSearch} preloader={showPreloader} />
                 <Footer />
               </>
             }
@@ -68,7 +108,11 @@ function App() {
             element={
               <>
                 <Header />
-                <SavedMovies movies={movies} onFormSubmit={searchSavedMovies} preloader={showPreloader} />
+                <SavedMovies
+                  movies={moviesData.movies}
+                  // onFormSubmit={searchSavedMovies}
+                  preloader={showPreloader}
+                />
                 <Footer />
               </>
             }
