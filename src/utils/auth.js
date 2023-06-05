@@ -1,11 +1,11 @@
-export const BASE_URL = "https://api.mesto.trance0id.nomoredomains.monster";
+import { URL_MAIN_API } from './constants';
 
 export const register = (formData) => {
-  return fetch(`${BASE_URL}/signup`, {
-    method: "POST",
+  return fetch(`${URL_MAIN_API}/signup`, {
+    method: 'POST',
     credentials: 'include',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(formData),
   }).then((res) => {
@@ -18,11 +18,11 @@ export const register = (formData) => {
 };
 
 export const authorize = (formData) => {
-  return fetch(`${BASE_URL}/signin`, {
-    method: "POST",
+  return fetch(`${URL_MAIN_API}/signin`, {
+    method: 'POST',
     credentials: 'include',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(formData),
   }).then((res) => {
@@ -35,11 +35,11 @@ export const authorize = (formData) => {
 };
 
 export const logout = () => {
-  return fetch(`${BASE_URL}/signout`, {
-    method: "GET",
-    credentials:'include',
+  return fetch(`${URL_MAIN_API}/signout`, {
+    method: 'GET',
+    credentials: 'include',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   }).then((res) => {
     if (res.ok) {
@@ -51,11 +51,11 @@ export const logout = () => {
 };
 
 export const checkAuth = () => {
-  return fetch(`${BASE_URL}/users/me`, {
-    method: "GET",
+  return fetch(`${URL_MAIN_API}/users/me`, {
+    method: 'GET',
     credentials: 'include',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   }).then((res) => {
     if (res.ok) {

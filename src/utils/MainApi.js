@@ -1,7 +1,8 @@
+import { URL_MAIN_API } from './constants';
+
 const API_CONFIG = {
-  baseUrl: "https://api.mesto.trance0id.nomoredomains.monster",
-  headers: {
-  },
+  baseUrl: URL_MAIN_API,
+  headers: {},
 };
 
 class Api {
@@ -15,7 +16,8 @@ class Api {
 
   _callFetch(endpoint, method, body, contentType) {
     const headers = this._headers;
-    headers["Content-Type"] = contentType;
+    headers['Content-Type'] = contentType;
+
     return fetch(this._baseUrl + endpoint, {
       credentials: 'include',
       method,
@@ -31,38 +33,23 @@ class Api {
   }
 
   getUserInfo() {
-    return this._callFetch("/users/me");
-  }
-
-  getInitialCards() {
-    return this._callFetch("/cards");
-  }
-
-  changeLikeCardStatus(cardId, status) {
-    return status
-      ? this._callFetch(`/cards/${cardId}/likes`, "PUT")
-      : this._callFetch(`/cards/${cardId}/likes`, "DELETE");
-  }
-
-  deleteCard(cardId) {
-    return this._callFetch(`/cards/${cardId}`, "DELETE");
+    return this._callFetch('/users/me');
   }
 
   setUserInfo(body) {
-    return this._callFetch("/users/me", "PATCH", body, "application/json");
+    return this._callFetch('/users/me', 'PATCH', body, 'application/json');
   }
 
-  addNewPlace(body) {
-    return this._callFetch("/cards", "POST", body, "application/json");
+  getMovies() {
+    return this._callFetch('/movies');
   }
 
-  setUserAvatar(body) {
-    return this._callFetch(
-      "/users/me/avatar",
-      "PATCH",
-      body,
-      "application/json"
-    );
+  addMovie(body) {
+    return this._callFetch('/movies', 'POST', body, 'application/json');
+  }
+
+  deleteMovie(movieId) {
+    return this._callFetch(`/movies/${movieId}`, 'DELETE');
   }
 }
 

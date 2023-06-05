@@ -19,10 +19,11 @@ import mainApi from '../../utils/MainApi';
 
 function App() {
   const [moviesData, setMoviesData] = React.useState({});
+  const [savedMoviesData, setSavedMoviesData] = React.useState({ movies: [] });
   const [currentUser, setCurrentUser] = React.useState({});
   const [showPreloader, setShowPreloader] = React.useState(false);
 
-  const makeMoviesData = (moviesArray, formdata) => {
+  const makeMoviesData = (formdata, moviesArray) => {
     return {
       query: formdata.query,
       short: formdata.short,
@@ -31,52 +32,63 @@ function App() {
     };
   };
 
-  const getMoviesFormData = (formdata) => {
-    const formDataObj = {};
-
-    for (let [key, value] of formdata) {
-      formDataObj[key] = value;
-    }
-
-    return formDataObj;
+  const saveMoviesData = data => {
+    localStorage.setItem('movies-short', data.short);
+    localStorage.setItem('movies-query', data.query);
+    localStorage.setItem('movies-list', JSON.stringify(data.movies));
   };
 
-  const saveMoviesData = (data) => {
-    for (const [key, value] of Object.entries(data)) {
-      localStorage.setItem(key, value);
-    }
-  };
-
-  const getMoviesData = () => {
+  function getMoviesData() {
     const moviesData = {};
-    moviesData['short'] = localStorage.getItem('short');
-    moviesData['query'] = localStorage.getItem('query');
+    moviesData['short'] = localStorage.getItem('movies-short') === 'true' ? true : false;
+    moviesData['query'] = localStorage.getItem('movies-query');
+    moviesData['movies'] = JSON.parse(localStorage.getItem('movies-list'));
     return moviesData;
-  };
+  }
 
-  const submitMoviesSearch = (formdata) => {
+  const onMoviesSearch = formdata => {
     setShowPreloader(true);
     getMovies()
-      .then((res) => {
-        const currentData = makeMoviesData(res, getMoviesFormData(formdata));
+      .then(res => {
+        const currentData = makeMoviesData(formdata, res);
         setMoviesData(currentData);
         saveMoviesData(currentData);
       })
-      .catch((err) => console.log(err))
+      .catch(err => console.log(err))
       .finally(() => setShowPreloader(false));
   };
 
-  // const searchSavedMovies = (keywords) => {
-  //   setShowPreloader(true);
-  //   mainApi
-  //     .getMovies(keywords)
-  //     .then((res) => setMovies(res))
-  //     .catch((err) => console.log(err))
-  //     .finally(() => setShowPreloader(false));
-  // };
+  const onSavedMoviesSearch = () => {};
+
+  const onLikeClick = (movie, isLiked) => {
+    if (!isLiked) {
+      setSavedMoviesData(prevSavedMoviesData => ({
+        ...prevSavedMoviesData,
+        movies: [...prevSavedMoviesData.movies, movie],
+      }));
+      // mainApi.addMovie(movie).then(newMovie => {
+      //   setSavedMoviesData({...savedMoviesData, savedMoviesData.movies.push(newMovie)});
+      // });
+    }
+  };
+
+  const onDeleteClick = movie => {
+    setSavedMoviesData(prevSavedMoviesData => ({
+      ...prevSavedMoviesData,
+      movies: prevSavedMoviesData.movies.filter(m => m.id !== movie.id),
+    }));
+    // mainApi
+    //   .deleteMovie(movieId)
+    //   .then(() => {
+    //     setSavedMoviesData(prevMoviesData => prevMoviesData.movies.filter(m => m.id !== movieId));
+    //   })
+    //   .catch(err => console.log(err));
+  };
+
   React.useEffect(() => {
-    console.log(moviesData);
+    // console.log(getMoviesData());
     setMoviesData(getMoviesData());
+    return () => localStorage.clear();
   }, []);
 
   return (
@@ -98,7 +110,12 @@ function App() {
             element={
               <>
                 <Header />
-                <Movies data={moviesData} onFormSubmit={submitMoviesSearch} preloader={showPreloader} />
+                <Movies
+                  data={moviesData}
+                  onFormSubmit={onMoviesSearch}
+                  preloader={showPreloader}
+                  onCaptionClick={onLikeClick}
+                />
                 <Footer />
               </>
             }
@@ -109,9 +126,10 @@ function App() {
               <>
                 <Header />
                 <SavedMovies
-                  movies={moviesData.movies}
-                  // onFormSubmit={searchSavedMovies}
+                  movies={savedMoviesData.movies}
                   preloader={showPreloader}
+                  onFormSubmit={onSavedMoviesSearch}
+                  onCaptionClick={onDeleteClick}
                 />
                 <Footer />
               </>
