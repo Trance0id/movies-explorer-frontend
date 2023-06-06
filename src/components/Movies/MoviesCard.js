@@ -1,12 +1,16 @@
 import './MoviesCard.css';
-import { URL_MOVIES_API as url } from '../../utils/constants';
 import { Link } from 'react-router-dom';
+// import { useContext } from 'react';
+// import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-export default function MoviesCard({ movie, like, onCaptionClick }) {
-  const { duration } = movie;
+export default function MoviesCard({ movie, like, onCaptionClick, savedMoviesIds }) {
+  const { duration, movieId } = movie;
   const durationHours = Math.floor(duration / 60);
   const durationMinutes = duration % 60;
-  const isLiked = duration > 80;
+
+  // const currentUser = useContext(CurrentUserContext);
+
+  const isLiked = savedMoviesIds.some(id => id === movieId);
 
   const handleCaptionClick = () => {
     onCaptionClick(movie, isLiked);
@@ -16,7 +20,7 @@ export default function MoviesCard({ movie, like, onCaptionClick }) {
       <Link
         to={movie.trailerLink || ''}
         className='interactive link movie__image'
-        style={{ backgroundImage: `url(${url + movie.image.url})` }}
+        style={{ backgroundImage: `url(${movie.image})` }}
         target='_blank'
       ></Link>
       <div className='interactive movie__caption' onClick={handleCaptionClick}>

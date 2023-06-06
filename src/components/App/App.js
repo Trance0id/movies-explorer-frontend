@@ -17,23 +17,35 @@ import Login from '../Login/Login';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import getMovies from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
+import { URL_MOVIES_API } from '../../utils/constants';
 
 function App() {
+  console.log('App rendered');
   const navigate = useNavigate();
 
   const [moviesData, setMoviesData] = React.useState({});
-  const [savedMoviesData, setSavedMoviesData] = React.useState({ movies: [] });
+  const [savedMovies, setSavedMovies] = React.useState([]);
+  const [savedMoviesIds, setSavedMoviesIds] = React.useState([]);
   const [currentUser, setCurrentUser] = React.useState({});
   const [showPreloader, setShowPreloader] = React.useState(false);
   const [formIsLoading, setFormIsLoading] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(true);
-  console.log(loggedIn);
 
-  const makeMoviesData = (formdata, moviesArray) => {
+  const makeMoviesData = (moviesArray, formdata) => {
     return {
       query: formdata.query,
       short: formdata.short,
-      movies: moviesArray,
+      movies: moviesArray.map(movie => {
+        return {
+          ...movie,
+          image: URL_MOVIES_API + movie.image.url,
+          thumbnail: URL_MOVIES_API + movie.image.formats.thumbnail.url,
+          movieId: movie.id,
+          id: undefined,
+          created_at: undefined,
+          updated_at: undefined,
+        };
+      }),
       moviesCount: moviesArray.length,
     };
   };
@@ -56,7 +68,7 @@ function App() {
     setShowPreloader(true);
     getMovies()
       .then(res => {
-        const currentData = makeMoviesData(formdata, res);
+        const currentData = makeMoviesData(res, formdata);
         setMoviesData(currentData);
         saveMoviesData(currentData);
       })
@@ -68,27 +80,27 @@ function App() {
 
   const onLikeClick = (movie, isLiked) => {
     if (!isLiked) {
-      setSavedMoviesData(prevSavedMoviesData => ({
-        ...prevSavedMoviesData,
-        movies: [...prevSavedMoviesData.movies, movie],
-      }));
-      // mainApi.addMovie(movie).then(newMovie => {
-      //   setSavedMoviesData({...savedMoviesData, savedMoviesData.movies.push(newMovie)});
-      // });
+      mainApi
+        .addMovie(movie)
+        .then(newMovie => {
+          setSavedMovies(prevSavedMovies => [...prevSavedMovies, newMovie]);
+          setSavedMoviesIds(prevIds => [...prevIds, newMovie.movieId]);
+        })
+        .catch(err => handleError(err));
+    } else {
+      onDeleteClick(movie);
     }
   };
 
   const onDeleteClick = movie => {
-    setSavedMoviesData(prevSavedMoviesData => ({
-      ...prevSavedMoviesData,
-      movies: prevSavedMoviesData.movies.filter(m => m.id !== movie.id),
-    }));
-    // mainApi
-    //   .deleteMovie(movieId)
-    //   .then(() => {
-    //     setSavedMoviesData(prevMoviesData => prevMoviesData.movies.filter(m => m.id !== movieId));
-    //   })
-    //   .catch(err => console.log(err));
+    const id = savedMovies.find(m => m.movieId === movie.movieId)._id;
+    mainApi
+      .deleteMovie(id)
+      .then(() => {
+        setSavedMovies(prevSavedMovies => prevSavedMovies.filter(m => m.movieId !== movie.movieId));
+        setSavedMoviesIds(prevIds => prevIds.filter(id => id !== movie.movieId));
+      })
+      .catch(err => console.log(err));
   };
 
   const onRegister = data => {
@@ -157,6 +169,17 @@ function App() {
     return () => localStorage.clear();
   }, [loggedIn]);
 
+  React.useEffect(() => {
+    mainApi.getMovies().then(res => {
+      setSavedMovies(res);
+      const ids = [];
+      for (let movie of res) {
+        ids.push(movie.movieId);
+      }
+      setSavedMoviesIds(ids);
+    });
+  }, []);
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className='page'>
@@ -180,6 +203,7 @@ function App() {
                   loggedIn={loggedIn}
                   component={Movies}
                   data={moviesData}
+                  savedMoviesIds={savedMoviesIds}
                   onFormSubmit={onMoviesSearch}
                   preloader={showPreloader}
                   onCaptionClick={onLikeClick}
@@ -196,10 +220,11 @@ function App() {
                 <ProtectedRoute
                   loggedIn={loggedIn}
                   component={SavedMovies}
-                  movies={savedMoviesData.movies}
+                  movies={savedMovies}
                   preloader={showPreloader}
                   onFormSubmit={onSavedMoviesSearch}
                   onCaptionClick={onDeleteClick}
+                  savedMoviesIds={savedMoviesIds}
                 />
                 <ProtectedRoute loggedIn={loggedIn} component={Footer} />
               </>
