@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 import './SearchForm.css';
 
 export default function SearchForm({ queryText, shortState, onFormSubmit }) {
-  const [queryValue, setQueryValue] = useState(queryText);
-  const [shortValue, setShortValue] = useState(shortState);
+  const [queryValue, setQueryValue] = useState('');
+  const [shortValue, setShortValue] = useState(false);
 
   // console.log('searchForm mounted');
-  // useEffect(() => {
-
-  // }, []);
+  useEffect(() => {
+    setQueryValue(queryText);
+    setShortValue(shortState);
+  }, [queryText, shortState]);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -24,9 +25,9 @@ export default function SearchForm({ queryText, shortState, onFormSubmit }) {
             className='search-form__input'
             placeholder='Фильм'
             name='query'
-            value={queryValue || queryText}
+            value={queryValue || ''}
             onChange={e => setQueryValue(e.target.value)}
-            required
+            // required
             minLength={2}
           />
           <button type='submit' className='interactive button search-form__submit'>
@@ -38,7 +39,7 @@ export default function SearchForm({ queryText, shortState, onFormSubmit }) {
             className='search-form__checkbox'
             name='short'
             type='checkbox'
-            checked={shortValue || shortState}
+            checked={shortValue || false}
             onChange={() => setShortValue(prevState => !prevState)}
           />
           <span className='search-form__switchbox'>

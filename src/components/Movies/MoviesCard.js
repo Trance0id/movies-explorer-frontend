@@ -1,20 +1,16 @@
 import './MoviesCard.css';
 import { Link } from 'react-router-dom';
-// import { useContext } from 'react';
-// import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function MoviesCard({ movie, like, onCaptionClick, savedMoviesIds }) {
   const { duration, movieId } = movie;
   const durationHours = Math.floor(duration / 60);
   const durationMinutes = duration % 60;
-
-  // const currentUser = useContext(CurrentUserContext);
-
-  const isLiked = savedMoviesIds.some(id => id === movieId);
+  const isLiked = like ? savedMoviesIds.some(m => m === movieId) : false;
 
   const handleCaptionClick = () => {
     onCaptionClick(movie, isLiked);
   };
+
   return (
     <li className='movie'>
       <Link

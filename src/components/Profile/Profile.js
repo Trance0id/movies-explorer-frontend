@@ -34,7 +34,7 @@ export default function Profile({ onFormSubmit, onUserLogout, formIsLoading }) {
             name='name'
             className={`profile__input ${validation.errors.name && 'profile__input_incorrect'}`}
             placeholder='Введите имя'
-            value={validation.inputValues.name}
+            value={validation.inputValues.name || ''}
             onChange={validation.onInputChange}
             required
             minLength={2}
@@ -49,7 +49,7 @@ export default function Profile({ onFormSubmit, onUserLogout, formIsLoading }) {
             name='email'
             className={`profile__input ${validation.errors.email && 'profile__input_incorrect'}`}
             placeholder='Введите E-mail'
-            value={validation.inputValues.email}
+            value={validation.inputValues.email || ''}
             onChange={validation.onInputChange}
             required
           />

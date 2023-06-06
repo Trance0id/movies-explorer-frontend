@@ -20,14 +20,9 @@ import mainApi from '../../utils/MainApi';
 import { URL_MOVIES_API } from '../../utils/constants';
 
 function App() {
-  console.log('App rendered');
   const navigate = useNavigate();
 
-  const [moviesData, setMoviesData] = React.useState({});
-  const [savedMovies, setSavedMovies] = React.useState([]);
-  const [savedMoviesIds, setSavedMoviesIds] = React.useState([]);
   const [currentUser, setCurrentUser] = React.useState({});
-  const [showPreloader, setShowPreloader] = React.useState(false);
   const [formIsLoading, setFormIsLoading] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(true);
 
@@ -48,59 +43,6 @@ function App() {
       }),
       moviesCount: moviesArray.length,
     };
-  };
-
-  const saveMoviesData = data => {
-    localStorage.setItem('movies-short', data.short);
-    localStorage.setItem('movies-query', data.query);
-    localStorage.setItem('movies-list', JSON.stringify(data.movies));
-  };
-
-  function getMoviesData() {
-    const moviesData = {};
-    moviesData['short'] = localStorage.getItem('movies-short') === 'true' ? true : false;
-    moviesData['query'] = localStorage.getItem('movies-query');
-    moviesData['movies'] = JSON.parse(localStorage.getItem('movies-list'));
-    return moviesData;
-  }
-
-  const onMoviesSearch = formdata => {
-    setShowPreloader(true);
-    getMovies()
-      .then(res => {
-        const currentData = makeMoviesData(res, formdata);
-        setMoviesData(currentData);
-        saveMoviesData(currentData);
-      })
-      .catch(err => console.log(err))
-      .finally(() => setShowPreloader(false));
-  };
-
-  const onSavedMoviesSearch = () => {};
-
-  const onLikeClick = (movie, isLiked) => {
-    if (!isLiked) {
-      mainApi
-        .addMovie(movie)
-        .then(newMovie => {
-          setSavedMovies(prevSavedMovies => [...prevSavedMovies, newMovie]);
-          setSavedMoviesIds(prevIds => [...prevIds, newMovie.movieId]);
-        })
-        .catch(err => handleError(err));
-    } else {
-      onDeleteClick(movie);
-    }
-  };
-
-  const onDeleteClick = movie => {
-    const id = savedMovies.find(m => m.movieId === movie.movieId)._id;
-    mainApi
-      .deleteMovie(id)
-      .then(() => {
-        setSavedMovies(prevSavedMovies => prevSavedMovies.filter(m => m.movieId !== movie.movieId));
-        setSavedMoviesIds(prevIds => prevIds.filter(id => id !== movie.movieId));
-      })
-      .catch(err => console.log(err));
   };
 
   const onRegister = data => {
@@ -165,20 +107,7 @@ function App() {
         setLoggedIn(false);
         handleError(err);
       });
-    setMoviesData(getMoviesData());
-    return () => localStorage.clear();
   }, [loggedIn]);
-
-  React.useEffect(() => {
-    mainApi.getMovies().then(res => {
-      setSavedMovies(res);
-      const ids = [];
-      for (let movie of res) {
-        ids.push(movie.movieId);
-      }
-      setSavedMoviesIds(ids);
-    });
-  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -199,15 +128,7 @@ function App() {
             element={
               <>
                 <ProtectedRoute loggedIn={loggedIn} component={Header} />
-                <ProtectedRoute
-                  loggedIn={loggedIn}
-                  component={Movies}
-                  data={moviesData}
-                  savedMoviesIds={savedMoviesIds}
-                  onFormSubmit={onMoviesSearch}
-                  preloader={showPreloader}
-                  onCaptionClick={onLikeClick}
-                />
+                <ProtectedRoute loggedIn={loggedIn} component={Movies} />
                 <ProtectedRoute loggedIn={loggedIn} component={Footer} />
               </>
             }
@@ -217,15 +138,7 @@ function App() {
             element={
               <>
                 <ProtectedRoute loggedIn={loggedIn} component={Header} />
-                <ProtectedRoute
-                  loggedIn={loggedIn}
-                  component={SavedMovies}
-                  movies={savedMovies}
-                  preloader={showPreloader}
-                  onFormSubmit={onSavedMoviesSearch}
-                  onCaptionClick={onDeleteClick}
-                  savedMoviesIds={savedMoviesIds}
-                />
+                <ProtectedRoute loggedIn={loggedIn} component={SavedMovies} />
                 <ProtectedRoute loggedIn={loggedIn} component={Footer} />
               </>
             }
