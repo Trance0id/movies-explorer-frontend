@@ -1,8 +1,9 @@
 import './App.css';
 
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -18,10 +19,15 @@ import getMovies from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
 
 function App() {
+  const navigate = useNavigate();
+
   const [moviesData, setMoviesData] = React.useState({});
   const [savedMoviesData, setSavedMoviesData] = React.useState({ movies: [] });
   const [currentUser, setCurrentUser] = React.useState({});
   const [showPreloader, setShowPreloader] = React.useState(false);
+  const [formIsLoading, setFormIsLoading] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(true);
+  console.log(loggedIn);
 
   const makeMoviesData = (formdata, moviesArray) => {
     return {
@@ -85,11 +91,71 @@ function App() {
     //   .catch(err => console.log(err));
   };
 
+  const onRegister = data => {
+    console.log(data);
+    setFormIsLoading(true);
+    mainApi
+      .register(data)
+      .then(res => {
+        console.log(res);
+        navigate('/signin', { replace: true });
+      })
+      .catch(err => handleError(err))
+      .finally(() => setFormIsLoading(false));
+  };
+
+  const onLogin = data => {
+    setFormIsLoading(true);
+    mainApi
+      .login(data)
+      .then(res => {
+        navigate('/movies', { replace: true });
+        setLoggedIn(true);
+      })
+      .catch(err => handleError(err))
+      .finally(() => setFormIsLoading(false));
+  };
+
+  const onLogout = () => {
+    mainApi
+      .logout()
+      .then(() => {
+        setLoggedIn(false);
+        navigate('/');
+      })
+      .catch(err => handleError(err));
+  };
+
+  const onUserDataChange = userData => {
+    setFormIsLoading(true);
+    mainApi
+      .setUserInfo(userData)
+      .then(res => {
+        setCurrentUser(res);
+      })
+      .catch(err => handleError(err))
+      .finally(() => setFormIsLoading(false));
+  };
+
+  //improve logics
+  const handleError = err => {
+    console.log('from error handler: ', err);
+  };
+
   React.useEffect(() => {
-    // console.log(getMoviesData());
+    mainApi
+      .getUserInfo()
+      .then(res => {
+        setCurrentUser(res);
+        setLoggedIn(true);
+      })
+      .catch(err => {
+        setLoggedIn(false);
+        handleError(err);
+      });
     setMoviesData(getMoviesData());
     return () => localStorage.clear();
-  }, []);
+  }, [loggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -99,7 +165,7 @@ function App() {
             path='/'
             element={
               <>
-                <Header />
+                <Header loggedIn={loggedIn} />
                 <Main />
                 <Footer />
               </>
@@ -109,14 +175,16 @@ function App() {
             path='/movies'
             element={
               <>
-                <Header />
-                <Movies
+                <ProtectedRoute loggedIn={loggedIn} component={Header} />
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  component={Movies}
                   data={moviesData}
                   onFormSubmit={onMoviesSearch}
                   preloader={showPreloader}
                   onCaptionClick={onLikeClick}
                 />
-                <Footer />
+                <ProtectedRoute loggedIn={loggedIn} component={Footer} />
               </>
             }
           />
@@ -124,14 +192,16 @@ function App() {
             path='/saved-movies'
             element={
               <>
-                <Header />
-                <SavedMovies
+                <ProtectedRoute loggedIn={loggedIn} component={Header} />
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  component={SavedMovies}
                   movies={savedMoviesData.movies}
                   preloader={showPreloader}
                   onFormSubmit={onSavedMoviesSearch}
                   onCaptionClick={onDeleteClick}
                 />
-                <Footer />
+                <ProtectedRoute loggedIn={loggedIn} component={Footer} />
               </>
             }
           />
@@ -139,13 +209,25 @@ function App() {
             path='/profile'
             element={
               <>
-                <Header />
-                <Profile />
+                <ProtectedRoute loggedIn={loggedIn} component={Header} />
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  component={Profile}
+                  onFormSubmit={onUserDataChange}
+                  onUserLogout={onLogout}
+                  formIsLoading={formIsLoading}
+                />
               </>
             }
           />
-          <Route path='signup' element={<Register />} />
-          <Route path='signin' element={<Login />} />
+          <Route
+            path='signup'
+            element={<Register onFormSubmit={onRegister} formIsLoading={formIsLoading} />}
+          />
+          <Route
+            path='signin'
+            element={<Login onFormSubmit={onLogin} formIsLoading={formIsLoading} />}
+          />
           <Route path='*' element={<PageNotFound />} />
         </Routes>
       </div>

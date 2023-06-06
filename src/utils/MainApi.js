@@ -23,7 +23,7 @@ class Api {
       method,
       headers,
       body: JSON.stringify(body),
-    }).then((res) => {
+    }).then(res => {
       if (res.ok) {
         return res.json();
       } else {
@@ -50,6 +50,18 @@ class Api {
 
   deleteMovie(movieId) {
     return this._callFetch(`/movies/${movieId}`, 'DELETE');
+  }
+
+  register(body) {
+    return this._callFetch('/signup', 'POST', body, 'application/json');
+  }
+
+  login(body) {
+    return this._callFetch('/signin', 'POST', body, 'application/json');
+  }
+
+  logout() {
+    return this._callFetch('/signout');
   }
 }
 

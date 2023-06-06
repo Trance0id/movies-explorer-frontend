@@ -95,6 +95,12 @@
   line-height: 1.214;
 }
 
+.auth__submit:disabled {
+  background-color: #aaa;
+  cursor: default;
+  opacity: 1;
+}
+
 .auth__caption {
   width: 100%;
   margin-top: 16px;
