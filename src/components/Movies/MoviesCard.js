@@ -5,7 +5,8 @@ export default function MoviesCard({ movie, like, onCaptionClick, savedMoviesIds
   const { duration, movieId } = movie;
   const durationHours = Math.floor(duration / 60);
   const durationMinutes = duration % 60;
-  const isLiked = like ? savedMoviesIds.some(m => m === movieId) : false;
+  const isLiked = like ? savedMoviesIds.some(m => m === movieId) : true;
+  console.log(isLiked);
 
   const handleCaptionClick = () => {
     onCaptionClick(movie, isLiked);

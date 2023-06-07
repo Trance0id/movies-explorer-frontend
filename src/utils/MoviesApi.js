@@ -1,6 +1,6 @@
 import { URL_MOVIES_API } from './constants';
 
-const getFilms = () => {
+const getMovies = () => {
   return fetch(`${URL_MOVIES_API}/beatfilm-movies`).then(res => {
     if (res.ok) {
       return res.json();
@@ -14,4 +14,4 @@ const getFilms = () => {
   });
 };
 
-export default getFilms;
+export { getMovies };

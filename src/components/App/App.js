@@ -51,8 +51,7 @@ function App() {
     mainApi
       .register(data)
       .then(res => {
-        console.log(res);
-        navigate('/signin', { replace: true });
+        onLogin({ email: data.email, password: data.password });
       })
       .catch(err => handleError(err))
       .finally(() => setFormIsLoading(false));
@@ -63,8 +62,8 @@ function App() {
     mainApi
       .login(data)
       .then(res => {
-        navigate('/movies', { replace: true });
         setLoggedIn(true);
+        navigate('/movies', { replace: true });
       })
       .catch(err => handleError(err))
       .finally(() => setFormIsLoading(false));

@@ -26,7 +26,7 @@ export default function Auth(props) {
               required
               minLength={2}
               maxLength={30}
-              value={validation.inputValues.name}
+              value={validation.inputValues.name || ''}
               onChange={validation.onInputChange}
             />
             <span className='auth__error'>{validation.errors.name}</span>
@@ -40,7 +40,7 @@ export default function Auth(props) {
             placeholder='Введите E-mail'
             name='email'
             required
-            value={validation.inputValues.email}
+            value={validation.inputValues.email || ''}
             onChange={validation.onInputChange}
           />
           <span className='auth__error'>{validation.errors.email}</span>
@@ -55,7 +55,7 @@ export default function Auth(props) {
             required
             minLength={8}
             maxLength={30}
-            value={validation.inputValues.password}
+            value={validation.inputValues.password || ''}
             onChange={validation.onInputChange}
           />
           <span className='auth__error'>{validation.errors.password}</span>
