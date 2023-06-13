@@ -16,7 +16,7 @@ export default function Movies() {
       <MoviesCardList
         movies={moviesHook.filteredMovies}
         like={true}
-        more={moviesHook.showMore}
+        more={true}
         preloader={moviesHook.showPreloader}
         onCaptionClick={moviesHook.onCaptionClick}
         savedMoviesIds={moviesHook.userSavedMoviesIds}

@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react';
 import * as beatfilmsApi from '../utils/MoviesApi';
 import mainApi from '../utils/MainApi';
 import { URL_MOVIES_API } from '../utils/constants';
+import useScreen from './useScreen';
 
 const useMovies = (forUsersMovies = false) => {
+  const screen = useScreen();
+
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [userSavedMovies, setUserSavedMovies] = useState([]);
@@ -30,7 +33,7 @@ const useMovies = (forUsersMovies = false) => {
   const getMoviesFrom = data => {
     return !forUsersMovies
       ? beatfilmsApi.getMovies().then(res => {
-          const niceMovies = res.map(movie => ({
+          const formattedMovies = res.map(movie => ({
             ...movie,
             image: URL_MOVIES_API + movie.image.url,
             thumbnail: URL_MOVIES_API + movie.image.formats.thumbnail.url,
@@ -39,9 +42,9 @@ const useMovies = (forUsersMovies = false) => {
             created_at: undefined,
             updated_at: undefined,
           }));
-          setMovies(niceMovies);
-          setFilteredMovies(filterMovies(niceMovies, data));
-          storeToLocalstorage({ movies: niceMovies, query: data.query, short: data.short });
+          setMovies(formattedMovies);
+          setFilteredMovies(filterMovies(formattedMovies, data));
+          storeToLocalstorage({ movies: formattedMovies, query: data.query, short: data.short });
         })
       : mainApi
           .getMovies()
@@ -121,7 +124,6 @@ const useMovies = (forUsersMovies = false) => {
     formData,
     onMoviesSearch,
     filteredMovies,
-    showMore,
     onCaptionClick,
     userSavedMovies,
     userSavedMoviesIds,
