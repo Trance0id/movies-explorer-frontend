@@ -23,6 +23,7 @@
 - Использованы стандартные реакт хуки, а также созданны собственные
 - Реализовано временное хранение фильмов в localstorage
 
-**Pull request**
+**Ссылки**
 
+[Ссылка на деплой](https://movies-explorer.trance0id.nomoredomains.monster/)
 [Ссылка на pull request](https://github.com/Trance0id/movies-explorer-frontend/pull/2)
