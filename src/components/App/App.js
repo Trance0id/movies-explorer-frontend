@@ -24,7 +24,7 @@ function App() {
   const [formIsLoading, setFormIsLoading] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [error, setError] = React.useState('');
-  const [updateSucces, setUpdateSucces] = React.useState('');
+  const [updateSuccess, setUpdateSuccess] = React.useState('');
 
   const onRegister = data => {
     setError('');
@@ -68,13 +68,13 @@ function App() {
 
   const onUserDataChange = userData => {
     setError('');
-    setUpdateSucces('');
+    setUpdateSuccess('');
     setFormIsLoading(true);
     mainApi
       .setUserInfo(userData)
       .then(res => {
         setCurrentUser(res);
-        setUpdateSucces('Ваши данные успешно обновлены!');
+        setUpdateSuccess('Ваши данные успешно обновлены!');
       })
       .catch(err => {
         setError(err);
@@ -141,7 +141,7 @@ function App() {
                   onUserLogout={onLogout}
                   formIsLoading={formIsLoading}
                   error={error}
-                  succes={updateSucces}
+                  success={updateSuccess}
                 />
               </>
             }

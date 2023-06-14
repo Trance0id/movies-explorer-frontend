@@ -116,14 +116,17 @@ const useMovies = (forUsersMovies = false) => {
       setMovies(initialState.movies || []);
       setFormData({ query: initialState.query, short: initialState.short });
     }
-    mainApi.getMovies().then(res => {
-      if (!forUsersMovies) {
-        setUserSavedMovies(res);
-        setUserSavedMoviesIds(res.map(m => m.movieId));
-      } else {
-        setMovies(res);
-      }
-    });
+    mainApi
+      .getMovies()
+      .then(res => {
+        if (!forUsersMovies) {
+          setUserSavedMovies(res);
+          setUserSavedMoviesIds(res.map(m => m.movieId));
+        } else {
+          setMovies(res);
+        }
+      })
+      .catch(err => console.log(err));
   }, []);
 
   useEffect(() => {

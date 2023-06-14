@@ -1,15 +1,18 @@
 import './Profile.css';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import useValidation from '../../hooks/useValidation';
 
-export default function Profile({ onFormSubmit, onUserLogout, formIsLoading, error, succes }) {
+export default function Profile({ onFormSubmit, onUserLogout, formIsLoading, error, success }) {
   const currentUser = useContext(CurrentUserContext);
 
   const validation = useValidation();
 
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   const onSubmit = e => {
     e.preventDefault();
+    setFormSubmitted(true);
     onFormSubmit(validation.inputValues);
   };
 
@@ -57,12 +60,14 @@ export default function Profile({ onFormSubmit, onUserLogout, formIsLoading, err
         </label>
         <span className='profile__error'>{validation.errors.email}</span>
         <div className='profile__filler' />
-        {error && (
+        {formSubmitted && error && (
           <span className='profile__error'>
             {`При редактировании данных профиля возникла ошибка! ${error}`}
           </span>
         )}
-        {succes && <span className='profile__succes'>{`Данные успешно обновлены!`}</span>}
+        {formSubmitted && success && (
+          <span className='profile__succes'>{`Данные успешно обновлены!`}</span>
+        )}
         <button
           type='submit'
           className='interactive button profile__submit'
