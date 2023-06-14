@@ -62,6 +62,14 @@
   color: #ff4062;
 }
 
+.profile__succes {
+  min-height: 24px;
+  font-size: 10px;
+  line-height: 1.2;
+  color: green;
+  text-align: center;
+}
+
 .profile__error:first-of-type {
   margin-top: 82px;
 }

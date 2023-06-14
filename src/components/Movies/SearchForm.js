@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import './SearchForm.css';
 
-export default function SearchForm({ queryText, shortState, onFormSubmit }) {
+export default function SearchForm({ queryText, shortState, onFormSubmit, onShortChange }) {
   const [queryValue, setQueryValue] = useState('');
   const [shortValue, setShortValue] = useState(false);
+  const [error, setError] = useState('');
 
-  // console.log('searchForm mounted');
   useEffect(() => {
     setQueryValue(queryText);
     setShortValue(shortState);
@@ -13,7 +13,17 @@ export default function SearchForm({ queryText, shortState, onFormSubmit }) {
 
   const onSubmit = e => {
     e.preventDefault();
-    onFormSubmit({ query: queryValue, short: shortValue });
+    if (queryValue) {
+      setError('');
+      onFormSubmit({ query: queryValue, short: shortValue });
+    } else {
+      setError('Введите ключевое слово.');
+    }
+  };
+
+  const onShortClick = e => {
+    setShortValue(prevState => !prevState);
+    onShortChange(!shortValue);
   };
 
   return (
@@ -34,13 +44,14 @@ export default function SearchForm({ queryText, shortState, onFormSubmit }) {
             Поиск
           </button>
         </fieldset>
+        <span className='search-form__error'>{error}</span>
         <label className='interactive search-form__label' name='shorts'>
           <input
             className='search-form__checkbox'
             name='short'
             type='checkbox'
             checked={shortValue || false}
-            onChange={() => setShortValue(prevState => !prevState)}
+            onChange={onShortClick}
           />
           <span className='search-form__switchbox'>
             <span className='search-form__switcher' />

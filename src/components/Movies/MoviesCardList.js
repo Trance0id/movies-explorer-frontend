@@ -3,14 +3,18 @@ import MoviesCard from './MoviesCard';
 import Preloader from '../Preloader/Preloader';
 import { useState, useEffect } from 'react';
 import useScreen from '../../hooks/useScreen';
+import ErrorMessage from './ErrorMessage';
+import NothingFound from './NothingFound';
 
 export default function MoviesCardList({
   movies,
   like,
   more,
-  preloader,
+  showPreloader,
   onCaptionClick,
   savedMoviesIds,
+  isSearchDone,
+  errorText,
 }) {
   const [showMore, setShowMore] = useState(false);
   const [showingMovies, setShowingMovies] = useState([]);
@@ -34,18 +38,20 @@ export default function MoviesCardList({
 
   return (
     <section className='movies__section' aria-label='Фильмы'>
-      <Preloader preloader={preloader} />
+      <Preloader preloader={showPreloader} />
+      {isSearchDone && errorText && <ErrorMessage errorText={errorText} />}
+      {isSearchDone && !errorText && !showingMovies.length && <NothingFound />}
+
       <ul className='movies__list'>
-        {!!showingMovies &&
-          showingMovies.map(movie => (
-            <MoviesCard
-              key={movie.movieId}
-              movie={movie}
-              like={like}
-              onCaptionClick={onCaptionClick}
-              savedMoviesIds={savedMoviesIds}
-            />
-          ))}
+        {showingMovies?.map(movie => (
+          <MoviesCard
+            key={movie.movieId}
+            movie={movie}
+            like={like}
+            onCaptionClick={onCaptionClick}
+            savedMoviesIds={savedMoviesIds}
+          />
+        ))}
       </ul>
       {more && showMore && (
         <div className='movies__more'>

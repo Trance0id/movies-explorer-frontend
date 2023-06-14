@@ -12,9 +12,12 @@ export default function useValidation() {
     }));
     setErrors(errors => ({
       ...errors,
-      [e.target.name]: e.target.validationMessage,
+      [e.target.name]: e.target.validity.patternMismatch
+        ? 'Используйте только Буквы, дефис и пробел.'
+        : e.target.validationMessage,
     }));
     setIsFormValid(e.target.closest('form').checkValidity());
+    console.dir(e.target);
   }
 
   const resetForm = React.useCallback(

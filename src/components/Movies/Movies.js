@@ -12,14 +12,17 @@ export default function Movies() {
         queryText={moviesHook.formData.query}
         shortState={moviesHook.formData.short}
         onFormSubmit={moviesHook.onMoviesSearch}
+        onShortChange={moviesHook.onShortChange}
       />
       <MoviesCardList
         movies={moviesHook.filteredMovies}
         like={true}
         more={true}
-        preloader={moviesHook.showPreloader}
+        showPreloader={moviesHook.showPreloader}
         onCaptionClick={moviesHook.onCaptionClick}
         savedMoviesIds={moviesHook.userSavedMoviesIds}
+        isSearchDone={moviesHook.searchDone}
+        errorText={moviesHook.errorText}
       />
     </main>
   );

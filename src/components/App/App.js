@@ -15,57 +15,42 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import getMovies from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
-import { URL_MOVIES_API } from '../../utils/constants';
 
 function App() {
   const navigate = useNavigate();
 
   const [currentUser, setCurrentUser] = React.useState({});
   const [formIsLoading, setFormIsLoading] = React.useState(false);
-  const [loggedIn, setLoggedIn] = React.useState(true);
-
-  const makeMoviesData = (moviesArray, formdata) => {
-    return {
-      query: formdata.query,
-      short: formdata.short,
-      movies: moviesArray.map(movie => {
-        return {
-          ...movie,
-          image: URL_MOVIES_API + movie.image.url,
-          thumbnail: URL_MOVIES_API + movie.image.formats.thumbnail.url,
-          movieId: movie.id,
-          id: undefined,
-          created_at: undefined,
-          updated_at: undefined,
-        };
-      }),
-      moviesCount: moviesArray.length,
-    };
-  };
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [error, setError] = React.useState('');
+  const [updateSucces, setUpdateSucces] = React.useState('');
 
   const onRegister = data => {
-    console.log(data);
+    setError('');
     setFormIsLoading(true);
     mainApi
       .register(data)
       .then(res => {
         onLogin({ email: data.email, password: data.password });
       })
-      .catch(err => handleError(err))
+      .catch(err => setError(err))
       .finally(() => setFormIsLoading(false));
   };
 
   const onLogin = data => {
+    setError('');
     setFormIsLoading(true);
     mainApi
       .login(data)
-      .then(res => {
-        setLoggedIn(true);
-        navigate('/movies', { replace: true });
+      .then(() => {
+        mainApi.getUserInfo().then(res => {
+          setCurrentUser(res);
+          setLoggedIn(true);
+          navigate('/movies', { replace: true });
+        });
       })
-      .catch(err => handleError(err))
+      .catch(err => setError(err))
       .finally(() => setFormIsLoading(false));
   };
 
@@ -75,24 +60,26 @@ function App() {
       .then(() => {
         setLoggedIn(false);
         navigate('/');
+        localStorage.clear();
+        setCurrentUser({});
       })
-      .catch(err => handleError(err));
+      .catch(err => console.log(err));
   };
 
   const onUserDataChange = userData => {
+    setError('');
+    setUpdateSucces('');
     setFormIsLoading(true);
     mainApi
       .setUserInfo(userData)
       .then(res => {
         setCurrentUser(res);
+        setUpdateSucces('Ваши данные успешно обновлены!');
       })
-      .catch(err => handleError(err))
+      .catch(err => {
+        setError(err);
+      })
       .finally(() => setFormIsLoading(false));
-  };
-
-  //improve logics
-  const handleError = err => {
-    console.log('from error handler: ', err);
   };
 
   React.useEffect(() => {
@@ -104,9 +91,9 @@ function App() {
       })
       .catch(err => {
         setLoggedIn(false);
-        handleError(err);
+        console.log(err);
       });
-  }, [loggedIn]);
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -153,17 +140,21 @@ function App() {
                   onFormSubmit={onUserDataChange}
                   onUserLogout={onLogout}
                   formIsLoading={formIsLoading}
+                  error={error}
+                  succes={updateSucces}
                 />
               </>
             }
           />
           <Route
             path='signup'
-            element={<Register onFormSubmit={onRegister} formIsLoading={formIsLoading} />}
+            element={
+              <Register onFormSubmit={onRegister} formIsLoading={formIsLoading} error={error} />
+            }
           />
           <Route
             path='signin'
-            element={<Login onFormSubmit={onLogin} formIsLoading={formIsLoading} />}
+            element={<Login onFormSubmit={onLogin} formIsLoading={formIsLoading} error={error} />}
           />
           <Route path='*' element={<PageNotFound />} />
         </Routes>

@@ -23,11 +23,12 @@ export default function Auth(props) {
               className={`auth__input ${validation.errors.name && 'auth__input_incorrect'}`}
               placeholder='Введите имя'
               name='name'
-              required
+              requred
               minLength={2}
               maxLength={30}
               value={validation.inputValues.name || ''}
               onChange={validation.onInputChange}
+              pattern='^[A-zА-яё\s\-]+$'
             />
             <span className='auth__error'>{validation.errors.name}</span>
           </label>
@@ -61,6 +62,12 @@ export default function Auth(props) {
           <span className='auth__error'>{validation.errors.password}</span>
         </label>
         <div className='auth__filler' />
+        {props.error && (
+          <span className='auth__error'>
+            {props.errorMsg}
+            {` ${props.error}`}
+          </span>
+        )}
         <button
           type='submit'
           className='interactive button auth__submit'

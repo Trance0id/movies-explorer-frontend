@@ -2,19 +2,17 @@ import { useState, useEffect } from 'react';
 import * as beatfilmsApi from '../utils/MoviesApi';
 import mainApi from '../utils/MainApi';
 import { URL_MOVIES_API } from '../utils/constants';
-import useScreen from './useScreen';
 
 const useMovies = (forUsersMovies = false) => {
-  const screen = useScreen();
-
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [userSavedMovies, setUserSavedMovies] = useState([]);
   const [userSavedMoviesIds, setUserSavedMoviesIds] = useState([]);
   const [formData, setFormData] = useState({ query: '', short: false });
   const [showPreloader, setShowPreloader] = useState(false);
-  const [showMore, setShowMore] = useState(false);
   const prefix = forUsersMovies ? 'saved-' : '';
+  const [errorText, setErrorText] = useState('');
+  const [searchDone, setSearchDone] = useState(false);
 
   const storeToLocalstorage = ({ movies = [], query = '', short = false }) => {
     localStorage.setItem(prefix + 'movies-short', JSON.stringify(short));
@@ -46,22 +44,32 @@ const useMovies = (forUsersMovies = false) => {
           setFilteredMovies(filterMovies(formattedMovies, data));
           storeToLocalstorage({ movies: formattedMovies, query: data.query, short: data.short });
         })
-      : mainApi
-          .getMovies()
-          .then(res => {
-            setMovies(res);
-            setFilteredMovies(filterMovies(res, data));
-            storeToLocalstorage({ movies: res, query: data.query, short: data.short });
-          })
-          .catch(err => console.log(err));
+      : mainApi.getMovies().then(res => {
+          setMovies(res);
+          setFilteredMovies(filterMovies(res, data));
+          storeToLocalstorage({ movies: res, query: data.query, short: data.short });
+        });
   };
 
   const onMoviesSearch = data => {
     setShowPreloader(true);
     setFormData(data);
     getMoviesFrom(data)
-      .catch(err => console.log(err))
-      .finally(() => setShowPreloader(false));
+      .catch(err => {
+        setMovies([]);
+        setErrorText(err);
+        storeToLocalstorage({});
+      })
+      .finally(() => {
+        setShowPreloader(false);
+        setSearchDone(true);
+      });
+  };
+
+  const onShortChange = shortState => {
+    if (searchDone) {
+      setFilteredMovies(filterMovies(movies, { query: formData.query, short: shortState }));
+    }
   };
 
   const likeMovie = movie => {
@@ -104,8 +112,10 @@ const useMovies = (forUsersMovies = false) => {
 
   useEffect(() => {
     const initialState = getFromLocalstorage();
-    setMovies(initialState.movies || []);
-    setFormData({ query: initialState.query, short: initialState.short });
+    if (!forUsersMovies) {
+      setMovies(initialState.movies || []);
+      setFormData({ query: initialState.query, short: initialState.short });
+    }
     mainApi.getMovies().then(res => {
       if (!forUsersMovies) {
         setUserSavedMovies(res);
@@ -127,6 +137,10 @@ const useMovies = (forUsersMovies = false) => {
     onCaptionClick,
     userSavedMovies,
     userSavedMoviesIds,
+    onShortChange,
+    showPreloader,
+    errorText,
+    searchDone,
   };
 };
 

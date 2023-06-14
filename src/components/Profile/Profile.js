@@ -3,7 +3,7 @@ import { useContext, useEffect } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import useValidation from '../../hooks/useValidation';
 
-export default function Profile({ onFormSubmit, onUserLogout, formIsLoading }) {
+export default function Profile({ onFormSubmit, onUserLogout, formIsLoading, error, succes }) {
   const currentUser = useContext(CurrentUserContext);
 
   const validation = useValidation();
@@ -40,6 +40,7 @@ export default function Profile({ onFormSubmit, onUserLogout, formIsLoading }) {
             minLength={2}
             maxLength={30}
             autoComplete='off'
+            pattern='^[A-zА-яё\s\-]+$'
           />
         </label>
         <label className='profile__label'>
@@ -56,6 +57,12 @@ export default function Profile({ onFormSubmit, onUserLogout, formIsLoading }) {
         </label>
         <span className='profile__error'>{validation.errors.email}</span>
         <div className='profile__filler' />
+        {error && (
+          <span className='profile__error'>
+            {`При редактировании данных профиля возникла ошибка! ${error}`}
+          </span>
+        )}
+        {succes && <span className='profile__succes'>{`Данные успешно обновлены!`}</span>}
         <button
           type='submit'
           className='interactive button profile__submit'

@@ -6,6 +6,7 @@ const REGISTER_PAGE_DATA = {
   submitCaptionText: 'Уже зарегистрированы?',
   linkText: 'Войти',
   linkUrl: '/signin',
+  errorMsg: 'При регистрации произошла ошибка.',
 };
 
 const LOGIN_PAGE_DATA = {
@@ -16,6 +17,7 @@ const LOGIN_PAGE_DATA = {
   submitCaptionText: 'Ещё не зарегистрированы?',
   linkText: 'Регистрация',
   linkUrl: '/signup',
+  errorMsg: 'При авторизации произошла ошибка.',
 };
 
 const URL_MOVIES_API = 'https://api.nomoreparties.co';

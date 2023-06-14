@@ -1,8 +1,14 @@
 import './Navigation.css';
+import { useRef, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import iconProfile from '../../images/icon-profile.svg';
 
 export default function Navigation({ loggedIn }) {
+  const menuState = useRef(null);
+
+  const onNavigationClick = e => {
+    menuState.current.checked = false;
+  };
   return !loggedIn ? (
     <nav className='navigation navigation_logged-out'>
       <Link to='/signup' className='link interactive navigation__link'>
@@ -14,7 +20,7 @@ export default function Navigation({ loggedIn }) {
     </nav>
   ) : (
     <div className='navigation'>
-      <input type='checkbox' className='navigation__burger-state' id='burger' />
+      <input type='checkbox' className='navigation__burger-state' id='burger' ref={menuState} />
       <label className='interactive button navigation__burger' htmlFor='burger' />
       <nav className='navigation__wrapper'>
         <div className='navigation__films'>
@@ -24,6 +30,7 @@ export default function Navigation({ loggedIn }) {
               `interactive link navigation__link navigation__link_type_movies
             navigation__link_type_home ${isActive && 'navigation__link_type_active'}`
             }
+            onClick={onNavigationClick}
           >
             Главная
           </NavLink>
@@ -34,6 +41,7 @@ export default function Navigation({ loggedIn }) {
                 isActive && 'navigation__link_type_active'
               }`
             }
+            onClick={onNavigationClick}
           >
             Фильмы
           </NavLink>
@@ -44,6 +52,7 @@ export default function Navigation({ loggedIn }) {
                 isActive && 'navigation__link_type_active'
               }`
             }
+            onClick={onNavigationClick}
           >
             Сохранённые фильмы
           </NavLink>
@@ -55,6 +64,7 @@ export default function Navigation({ loggedIn }) {
               isActive && 'navigation__link_type_active'
             }`
           }
+          onClick={onNavigationClick}
         >
           Аккаунт
           <img src={iconProfile} alt='Профиль' className='navigation__link-icon' />
