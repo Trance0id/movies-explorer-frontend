@@ -9,9 +9,9 @@ export default function Footer() {
           Учебный проект Яндекс.Практикум х BeatFilm.
         </p>
         <section className='footer__credits' aria-label='Информация о странице'>
-          <div className='footer__year'>
+          <span className='footer__year'>
             &copy; {new Date().getFullYear()}
-          </div>
+          </span>
           <nav className='footer__contacts'>
                 <Link to='https://practicum.yandex.ru/'
                   className='interactive link footer__link'

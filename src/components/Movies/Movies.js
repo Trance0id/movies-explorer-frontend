@@ -1,81 +1,29 @@
 import './Movies.css';
 import SearchForm from './SearchForm';
 import MoviesCardList from './MoviesCardList';
-import cardLink from '../../images/movieImg.png';
+import useMovies from '../../hooks/useMovies';
 
 export default function Movies() {
-const movies = [
-  {
-    id: 1,
-    name: 'Бег это свобода',
-    link: cardLink,
-  },
-  {
-    id: 2,
-    name: 'Бег это свобода',
-    link: cardLink,
-    active: true,
-  },
-  {
-    id: 3,
-    name: 'Бег это свобода',
-    link: cardLink,
-  },
-  {
-    id: 4,
-    name: 'Бег это свобода',
-    link: cardLink,
-    active: true,
-  },
-  {
-    id: 5,
-    name: 'Бег это свобода',
-    link: cardLink,
-  },
-  {
-    id: 6,
-    name: 'Бег это свобода',
-    link: cardLink,
-  },
-  {
-    id: 7,
-    name: 'Бег это свобода',
-    link: cardLink,
-    active: true,
-  },
-  {
-    id: 8,
-    name: 'Бег это свобода',
-    link: cardLink,
-  },
-  {
-    id: 9,
-    name: 'Бег это свобода',
-    link: cardLink,
-    active: true,
-  },
-  {
-    id: 10,
-    name: 'Бег это свобода',
-    link: cardLink,
-  },
-  {
-    id: 11,
-    name: 'Бег это свобода',
-    link: cardLink,
-  },
-  {
-    id: 12,
-    name: 'Бег это свобода',
-    link: cardLink,
-  }
-]
-
+  const moviesHook = useMovies();
 
   return (
     <main className='movies'>
-      <SearchForm />
-      <MoviesCardList movies={movies} like={true} more={true} />
+      <SearchForm
+        queryText={moviesHook.formData.query}
+        shortState={moviesHook.formData.short}
+        onFormSubmit={moviesHook.onMoviesSearch}
+        onShortChange={moviesHook.onShortChange}
+      />
+      <MoviesCardList
+        movies={moviesHook.filteredMovies}
+        like={true}
+        more={true}
+        showPreloader={moviesHook.showPreloader}
+        onCaptionClick={moviesHook.onCaptionClick}
+        savedMoviesIds={moviesHook.userSavedMoviesIds}
+        isSearchDone={moviesHook.searchDone}
+        errorText={moviesHook.errorText}
+      />
     </main>
   );
 }

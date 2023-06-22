@@ -1,43 +1,29 @@
 import './SavedMovies.css';
 import SearchForm from '../Movies/SearchForm';
 import MoviesCardList from '../Movies/MoviesCardList';
-import cardLink from '../../images/movieImg.png';
+import { useEffect, useState } from 'react';
+import mainApi from '../../utils/MainApi';
+import useMovies from '../../hooks/useMovies';
 
 export default function SavedMovies() {
-  const movies = [
-    {
-      id: 1,
-      name: 'Бег это свобода',
-      link: cardLink,
-    },
-    {
-      id: 2,
-      name: 'Бег это свобода',
-      link: cardLink,
-      active: true,
-    },
-    {
-      id: 3,
-      name: 'Бег это свобода',
-      link: cardLink,
-    },
-    {
-      id: 4,
-      name: 'Бег это свобода',
-      link: cardLink,
-      active: true,
-    },
-    {
-      id: 5,
-      name: 'Бег это свобода',
-      link: cardLink,
-    }
-  ]
+  const moviesHook = useMovies(true);
 
   return (
     <main className='movies'>
-      <SearchForm />
-      <MoviesCardList movies={movies} like={false} more={false}/>
+      <SearchForm
+        queryText={moviesHook.formData.query}
+        shortState={moviesHook.formData.short}
+        onFormSubmit={moviesHook.onMoviesSearch}
+        onShortChange={moviesHook.onShortChange}
+      />
+      <MoviesCardList
+        movies={moviesHook.filteredMovies}
+        like={false}
+        more={false}
+        onCaptionClick={moviesHook.onCaptionClick}
+        isSearchDone={moviesHook.searchDone}
+        errorText={moviesHook.errorText}
+      />
     </main>
   );
 }

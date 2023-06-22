@@ -6,7 +6,8 @@ const REGISTER_PAGE_DATA = {
   submitCaptionText: 'Уже зарегистрированы?',
   linkText: 'Войти',
   linkUrl: '/signin',
-}
+  errorMsg: 'При регистрации произошла ошибка.',
+};
 
 const LOGIN_PAGE_DATA = {
   hasNameField: false,
@@ -16,6 +17,10 @@ const LOGIN_PAGE_DATA = {
   submitCaptionText: 'Ещё не зарегистрированы?',
   linkText: 'Регистрация',
   linkUrl: '/signup',
-}
+  errorMsg: 'При авторизации произошла ошибка.',
+};
 
-export { REGISTER_PAGE_DATA, LOGIN_PAGE_DATA };
+const URL_MOVIES_API = 'https://api.nomoreparties.co';
+const URL_MAIN_API = 'https://movies-explorer.trance0id.nomoredomains.monster/api';
+
+export { REGISTER_PAGE_DATA, LOGIN_PAGE_DATA, URL_MOVIES_API, URL_MAIN_API };
