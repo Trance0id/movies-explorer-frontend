@@ -1,7 +1,7 @@
 import { LOGIN_PAGE_DATA } from '../../utils/constants';
 import Auth from '../Auth/Auth';
 
-export default function Login({ onFormSubmit, formIsLoading, error }) {
+export default function Login({ onFormSubmit, formIsLoading, error, loggedIn }) {
   return (
     <main className='auth'>
       <Auth
@@ -9,6 +9,7 @@ export default function Login({ onFormSubmit, formIsLoading, error }) {
         onFormSubmit={onFormSubmit}
         formIsLoading={formIsLoading}
         error={error}
+        loggedIn={loggedIn}
       />
     </main>
   );

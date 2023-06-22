@@ -1,7 +1,7 @@
 import { REGISTER_PAGE_DATA } from '../../utils/constants';
 import Auth from '../Auth/Auth';
 
-export default function Register({ onFormSubmit, formIsLoading, error }) {
+export default function Register({ onFormSubmit, formIsLoading, error, loggedIn }) {
   return (
     <main className='auth'>
       <Auth
@@ -9,6 +9,7 @@ export default function Register({ onFormSubmit, formIsLoading, error }) {
         onFormSubmit={onFormSubmit}
         formIsLoading={formIsLoading}
         error={error}
+        loggedIn={loggedIn}
       />
     </main>
   );

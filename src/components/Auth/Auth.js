@@ -1,16 +1,22 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import './Auth.css';
 import useValidation from '../../hooks/useValidation';
 
 export default function Auth(props) {
   const validation = useValidation();
 
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   const onSubmit = e => {
     e.preventDefault();
+    setFormSubmitted(true);
     props.onFormSubmit(validation.inputValues);
   };
 
-  return (
+  return props.loggedIn ? (
+    <Navigate to='/' />
+  ) : (
     <div className='auth__container'>
       <Link to='/' className='interactive link auth__logo' />
       <h2 className='auth__heading'>{props.heading}</h2>
@@ -62,7 +68,7 @@ export default function Auth(props) {
           <span className='auth__error'>{validation.errors.password}</span>
         </label>
         <div className='auth__filler' />
-        {props.error && (
+        {formSubmitted && props.error && (
           <span className='auth__error'>
             {props.errorMsg}
             {` ${props.error}`}

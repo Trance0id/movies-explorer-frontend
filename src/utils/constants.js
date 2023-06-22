@@ -23,4 +23,19 @@ const LOGIN_PAGE_DATA = {
 const URL_MOVIES_API = 'https://api.nomoreparties.co';
 const URL_MAIN_API = 'https://movies-explorer.trance0id.nomoredomains.monster/api';
 
-export { REGISTER_PAGE_DATA, LOGIN_PAGE_DATA, URL_MOVIES_API, URL_MAIN_API };
+const SHORT_MOVIES_LENGTH = 40;
+
+const MOVIES_AMOUNT = {
+  large: { start: 12, add: 3 },
+  medium: { start: 8, add: 2 },
+  small: { start: 5, add: 2 },
+};
+
+export {
+  REGISTER_PAGE_DATA,
+  LOGIN_PAGE_DATA,
+  URL_MOVIES_API,
+  URL_MAIN_API,
+  SHORT_MOVIES_LENGTH,
+  MOVIES_AMOUNT,
+};

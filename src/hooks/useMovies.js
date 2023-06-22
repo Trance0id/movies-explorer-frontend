@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as beatfilmsApi from '../utils/MoviesApi';
 import mainApi from '../utils/MainApi';
-import { URL_MOVIES_API } from '../utils/constants';
+import { SHORT_MOVIES_LENGTH, URL_MOVIES_API } from '../utils/constants';
 
 const useMovies = (forUsersMovies = false) => {
   const [movies, setMovies] = useState([]);
@@ -103,7 +103,7 @@ const useMovies = (forUsersMovies = false) => {
   const filterMovies = (movies, { query, short }) =>
     movies.filter(
       movie =>
-        (short ? movie.duration <= 40 : true) &&
+        (short ? movie.duration <= SHORT_MOVIES_LENGTH : true) &&
         (query
           ? movie.nameRU.toLowerCase().includes(query.toLowerCase()) ||
             movie.nameEN.toLowerCase().includes(query.toLowerCase())

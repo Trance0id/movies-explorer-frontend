@@ -149,12 +149,24 @@ function App() {
           <Route
             path='signup'
             element={
-              <Register onFormSubmit={onRegister} formIsLoading={formIsLoading} error={error} />
+              <Register
+                onFormSubmit={onRegister}
+                formIsLoading={formIsLoading}
+                error={error}
+                loggedIn={loggedIn}
+              />
             }
           />
           <Route
             path='signin'
-            element={<Login onFormSubmit={onLogin} formIsLoading={formIsLoading} error={error} />}
+            element={
+              <Login
+                onFormSubmit={onLogin}
+                formIsLoading={formIsLoading}
+                error={error}
+                loggedIn={loggedIn}
+              />
+            }
           />
           <Route path='*' element={<PageNotFound />} />
         </Routes>

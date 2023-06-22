@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { MOVIES_AMOUNT } from '../utils/constants';
 
 const useScreen = (notForUsersMovies = false) => {
   const [startMovies, setStartMovies] = useState(0);
@@ -8,14 +9,14 @@ const useScreen = (notForUsersMovies = false) => {
     const screenWidth = document.documentElement.clientWidth;
 
     if (screenWidth < 768) {
-      setStartMovies(5);
-      setMoreMovies(2);
+      setStartMovies(MOVIES_AMOUNT.small.start);
+      setMoreMovies(MOVIES_AMOUNT.small.add);
     } else if (screenWidth < 1280) {
-      setStartMovies(8);
-      setMoreMovies(2);
+      setStartMovies(MOVIES_AMOUNT.medium.start);
+      setMoreMovies(MOVIES_AMOUNT.medium.add);
     } else {
-      setStartMovies(12);
-      setMoreMovies(3);
+      setStartMovies(MOVIES_AMOUNT.large.start);
+      setMoreMovies(MOVIES_AMOUNT.large.add);
     }
     if (notForUsersMovies) {
       window.addEventListener('resize', handleWindowResize);
